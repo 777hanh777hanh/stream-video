@@ -13,7 +13,7 @@ const MenuComponent = ({ className: customClassName }: { className: string; coll
         {
             content: 'Home',
             to: '/',
-            exact: true,
+            exact: 'exact',
         },
         {
             content: 'Features',

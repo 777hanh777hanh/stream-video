@@ -16,7 +16,6 @@ type ButtonType = {
     large?: boolean;
     disabled?: boolean;
     activeclassname?: string;
-    exact?: boolean;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     icon?: any;
 };

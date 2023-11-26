@@ -16,11 +16,11 @@ const routes = {
 
 interface RouteProps {
     path: string;
-    component?: () => JSX.Element | null;
-    layout?: React.FC<{ children: React.ReactNode }>;
+    component?: React.ComponentType;
+    layout?: React.ComponentType<{ children: React.ReactNode }> | undefined;
     exact?: boolean;
     redirect?: string;
-    routes?: RouteProps[];
+    children?: RouteProps[];
 }
 
 const publicRoutes: RouteProps[] = [

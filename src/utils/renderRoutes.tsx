@@ -5,8 +5,8 @@ import { DefaultLayout } from '~/layouts';
 
 interface RouteProps {
     path: string;
-    component?: FC;
-    layout?: FC | null;
+    component?: FC | null | undefined;
+    layout?: FC | null | undefined;
     children?: RouteProps[];
 }
 
