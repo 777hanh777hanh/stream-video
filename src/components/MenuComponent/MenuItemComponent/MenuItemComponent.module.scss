@@ -1,0 +1,12 @@
+.menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    &:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+}

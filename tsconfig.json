@@ -1,35 +1,39 @@
 {
     "compilerOptions": {
-        "target": "ES2020", //esnext
+        "target": "esnext", //esnext
         "useDefineForClassFields": true,
-        "lib": ["ES2020", "DOM", "DOM.Iterable"],
-        "module": "ESNext",
+        "lib": ["esnext", "DOM", "DOM.Iterable"],
+        "module": "esnext",
         "skipLibCheck": true,
 
         /* Bundler mode */
-        "moduleResolution": "bundler",
+        "moduleResolution": "node",
         "allowImportingTsExtensions": true,
+        "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
         "checkJs": true,
-        "baseUrl": ".", // for absolute imports
+        "baseUrl": "./", // for absolute imports
         "paths": {
-            "~/*": ["src/*", "dist/*", ""],
+            "~/*": ["src/*", "dist/*", "/"],
             "~components/*": ["src/components/*"],
             "~pages/*": ["src/pages/*"],
-            "~hooks/*": ["src/hooks/*"]
+            "~hooks/*": ["src/hooks/*"],
+            "~layouts/*": ["src/layouts/*"],
+            "~assets/*": ["src/assets/*"],
+            "~images/*": ["src/assets/images/*"]
         },
 
         /* Linting */
-        "types": ["vite/client", "react", "react-dom"],
+        "types": ["vite/client", "react", "react-dom", "react-router", "react-router-dom", "node"],
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist"],
+    "exclude": ["node_modules", "dist", "vite.config.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

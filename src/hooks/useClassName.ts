@@ -6,7 +6,7 @@ const useClassNames = (thisarg: classNamesBind.Binding | undefined) => {
     const cxBind = classNamesBind.bind(thisarg);
 
     // Return a function that generates de-duped class names
-    return (...classes: string[]) => {
+    return (...classes: (string | { [key: string]: string })[]) => {
         // Bind the classnames and dedupe the resulting class names
         const cxDedupe = classNamesDedupe(cxBind(...classes));
 

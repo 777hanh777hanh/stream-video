@@ -5,7 +5,7 @@ import { DefaultLayout } from '~/layouts';
 
 interface RouteProps {
     path: string;
-    component: FC;
+    component?: FC;
     layout?: FC | null;
     children?: RouteProps[];
 }
@@ -13,7 +13,7 @@ interface RouteProps {
 const renderRoutes = (routes: RouteProps[]) => {
     if (Array.isArray(routes)) {
         return routes.map((route, index) => {
-            const Page = route.component;
+            const Page = route.component || Fragment;
 
             let Layout: ({ children }: { children: ReactNode }) => ReactNode = DefaultLayout;
             if (route.layout) {
