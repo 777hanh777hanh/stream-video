@@ -1,16 +1,16 @@
-import { FC, Fragment, ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { Route } from 'react-router-dom';
 
 import { DefaultLayout } from '~/layouts';
 
 interface RouteProps {
     path: string;
-    component?: FC | null | undefined;
-    layout?: FC | null | undefined;
-    children?: RouteProps[];
+    component?: React.FC<{ children: ReactNode }> | null | undefined;
+    layout?: React.FC<{ children: ReactNode }> | null | undefined;
+    children?: RouteProps[] | null | undefined;
 }
 
-const renderRoutes = (routes: RouteProps[]) => {
+const renderRoutes = (routes: RouteProps[] | null | undefined) => {
     if (Array.isArray(routes)) {
         return routes.map((route, index) => {
             const Page = route.component || Fragment;
@@ -27,7 +27,7 @@ const renderRoutes = (routes: RouteProps[]) => {
                     path={route.path}
                     element={
                         <Layout>
-                            <Page />
+                            <Page children={undefined} />
                         </Layout>
                     }
                 >

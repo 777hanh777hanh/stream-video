@@ -14,16 +14,16 @@ const routes = {
     stream: '/stream',
 };
 
-interface RouteProps {
+type RoutesProps = {
     path: string;
-    component?: React.ComponentType;
-    layout?: React.ComponentType<{ children: React.ReactNode }> | undefined;
+    component?: React.FC<{ children: React.ReactNode }> | null | undefined;
+    layout?: React.FC<{ children: React.ReactNode }> | null | undefined;
+    children?: RoutesProps[] | null | undefined;
     exact?: boolean;
     redirect?: string;
-    children?: RouteProps[];
-}
+};
 
-const publicRoutes: RouteProps[] = [
+const publicRoutes: RoutesProps[] = [
     {
         path: routes.home,
         component: HomePage,
