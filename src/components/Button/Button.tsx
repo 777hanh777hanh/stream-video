@@ -16,9 +16,9 @@ const Button: any = ({
     const cx = useClassNames(styles);
 
     const classes = cx('wrapper', {
-        [cusClassName]: cusClassName,
         btn,
         link,
+        [cusClassName]: cusClassName,
     });
 
     const props: {

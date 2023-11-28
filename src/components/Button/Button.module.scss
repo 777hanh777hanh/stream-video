@@ -3,7 +3,6 @@
     line-height: 1.42857;
 
     &.active {
-        color: var(--primary-color) !important;
         text-decoration: underline;
         text-underline-offset: 4px;
     }
@@ -11,6 +10,9 @@
     &.link {
         color: var(--white-color, #fff);
 
+        &.active {
+            color: var(--primary-color);
+        }
         &:hover {
             color: var(--primary-color);
         }
@@ -30,7 +32,7 @@
 
         &:hover {
             background: var(--primary-color);
-            color: var(--white-color, #fff) !important;
+            color: var(--white-color, #fff);
         }
     }
 
