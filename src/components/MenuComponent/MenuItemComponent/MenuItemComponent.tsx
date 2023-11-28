@@ -1,6 +1,6 @@
 import { useClassNames } from '~/hooks';
 import styles from './MenuItemComponent.module.scss';
-import Button from '~/components/Button';
+import Button from '~components/Button';
 
 const MenuItemComponent = ({ data, ...props }: { data: { content: string; [key: string]: unknown } }) => {
     const cx = useClassNames(styles);
@@ -12,7 +12,7 @@ const MenuItemComponent = ({ data, ...props }: { data: { content: string; [key: 
     };
 
     return (
-        <Button className={cx('menu-item')} icon={icon} {...passProps}>
+        <Button className={cx('menu-item')} link icon={icon} {...passProps}>
             {content}
         </Button>
     );

@@ -1,8 +1,10 @@
-import { useClassNames } from '~/hooks';
-import styles from './HeaderComponent.module.scss';
-import images from '~/assets/images';
-import MenuComponent from '../MenuComponent';
 import { Link } from 'react-router-dom';
+
+import { useClassNames } from '~/hooks';
+import images from '~/assets/images';
+import MenuComponent from '~components/MenuComponent';
+import Button from '~components/Button';
+import styles from './HeaderComponent.module.scss';
 
 const HeaderComponent = ({ className: customClassName }: { className: string }) => {
     const cx = useClassNames(styles);
@@ -14,6 +16,9 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
                 </Link>
             </div>
             <MenuComponent className={cx('menu')} />
+            <div className={cx('cta')}>
+                <Button btn>Login</Button>
+            </div>
         </header>
     );
 };
