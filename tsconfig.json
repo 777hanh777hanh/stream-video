@@ -7,13 +7,14 @@
         "skipLibCheck": true,
 
         /* Bundler mode */
-        "moduleResolution": "Bundler",
+        "moduleResolution": "node",
         "allowImportingTsExtensions": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
         "jsx": "react-jsx",
+        "allowJs": true,
         "checkJs": true,
         "baseUrl": "./", // for absolute imports
         "paths": {

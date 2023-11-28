@@ -2,7 +2,17 @@ import { useClassNames } from '~/hooks';
 import styles from './Button.module.scss';
 import { NavLink } from 'react-router-dom';
 
-const Button = ({ to, href, onClick, children, className: cusClassName, icon, link, btn, ...passProps }) => {
+const Button: any = ({
+    to,
+    href,
+    onClick,
+    children,
+    className: cusClassName,
+    icon,
+    link,
+    btn,
+    ...passProps
+}) => {
     const cx = useClassNames(styles);
 
     const classes = cx('wrapper', {
