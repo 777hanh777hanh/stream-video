@@ -1,0 +1,21 @@
+import { useClassNames } from '~/hooks';
+import styles from './SearchVideoItem.module.scss';
+
+const SearchVideoItem = ({ className }: any) => {
+    const cx = useClassNames(styles);
+    return (
+        <div className={cx('wrapper', className)}>
+            <img
+                className={cx('thumbnail')}
+                src="https://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpg"
+                alt=""
+            />
+            <h4 className={cx('title')}>
+                https://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpg
+                https://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpghttps://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpghttps://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpghttps://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpghttps://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpghttps://irex.cc/images/thumb/1LDK-JK-Ikinari-Doukyo-Micchaku-Hatsu-Ecchi-1.jpg
+            </h4>
+        </div>
+    );
+};
+
+export default SearchVideoItem;

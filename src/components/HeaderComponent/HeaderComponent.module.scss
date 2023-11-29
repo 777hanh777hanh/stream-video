@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    column-gap: 23px;
 
     .login {
         background: var(--primary-color);
@@ -36,5 +37,9 @@
 
     .menu {
         margin-left: 23px;
+    }
+
+    .search-result {
+        width: 100%;
     }
 }

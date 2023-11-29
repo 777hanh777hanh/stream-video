@@ -9,6 +9,7 @@ const LandingLayout = ({ children }: { children?: React.ReactNode }) => {
     return (
         <>
             <div className={cx('container')}>
+                {/* Header */}
                 <main className={cx('main')}>{children}</main>
                 <FooterComponent className={'footer'} />
             </div>

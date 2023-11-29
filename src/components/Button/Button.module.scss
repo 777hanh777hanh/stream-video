@@ -1,6 +1,7 @@
 .wrapper {
     color: var(--black-color, #2b2b2b);
     line-height: 1.42857;
+    white-space: nowrap;
 
     &.active {
         text-decoration: underline;

@@ -1,0 +1,16 @@
+.wrapper {
+    width: 100%;
+    padding-top: 8px;
+    max-height: min((100vh - 96px) - 60px, 734px);
+    border-radius: 8px;
+    background: #616161;
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 8px;
+        overflow: hidden;
+        display: none;
+    }
+}

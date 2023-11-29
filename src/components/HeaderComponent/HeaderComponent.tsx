@@ -1,14 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
 import images from '~/assets/images';
+import styles from './HeaderComponent.module.scss';
 import MenuComponent from '~components/MenuComponent';
 import Button from '~components/Button';
-import styles from './HeaderComponent.module.scss';
-import { SearchComponent } from '../Search';
+import { SearchComponent } from '~components/Search';
 
 const HeaderComponent = ({ className: customClassName }: { className: string }) => {
     const cx = useClassNames(styles);
+    const navigate = useNavigate();
+
+    const handleNavigateToLogin = () => {
+        navigate('/signin');
+    };
+
     return (
         <header className={cx('header', customClassName)}>
             <div className={cx('side')}>
@@ -17,9 +23,9 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
                 </Link>
                 <MenuComponent className={cx('menu')} />
             </div>
-            <SearchComponent />
+            <SearchComponent className={'search'} />
             <div className={cx('cta')}>
-                <Button btn className={cx('login')}>
+                <Button btn className={cx('login')} onClick={handleNavigateToLogin}>
                     Đăng nhập
                 </Button>
             </div>

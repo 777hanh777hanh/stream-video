@@ -1,6 +1,6 @@
 import React from 'react';
 import { DefaultLayout, LandingLayout } from '~/layouts';
-import HomePage from '~/pages/HomePage';
+import { HomePage, SignInPage } from '~/pages';
 
 const routes = {
     home: '/',
@@ -36,6 +36,7 @@ const publicRoutes: RoutesProps[] = [
     },
     {
         path: routes.signin,
+        component: SignInPage,
         layout: LandingLayout,
     },
     // ...
