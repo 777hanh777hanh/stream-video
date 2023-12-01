@@ -25,7 +25,7 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
             </div>
             <SearchComponent className={'search'} />
             <div className={cx('cta')}>
-                <Button btn className={cx('login')} onClick={handleNavigateToLogin}>
+                <Button disabled btn className={cx('login')} onClick={handleNavigateToLogin}>
                     Đăng nhập
                 </Button>
             </div>

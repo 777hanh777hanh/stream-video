@@ -1,6 +1,11 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     width: 100%;
     padding-top: 8px;
+    padding-bottom: 8px;
     max-height: min((100vh - 96px) - 60px, 734px);
     border-radius: 8px;
     background: #616161;

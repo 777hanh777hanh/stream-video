@@ -6,6 +6,10 @@
     -moz-column-gap: 20px;
     column-gap: 20px;
     overflow-y: overlay;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     &:hover {
         cursor: pointer;
@@ -24,7 +28,7 @@
     .title {
         font-size: 1.6rem;
         font-weight: 600;
-        word-break: break-all;
+        word-break: keep-all;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;

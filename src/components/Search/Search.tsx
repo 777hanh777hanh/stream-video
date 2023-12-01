@@ -35,13 +35,10 @@ const Search = ({ className: cusClassName }, ref: any) => {
             <Tippy
                 interactive
                 visible={searchResult.length > 0}
+                zIndex={4}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex={-1} {...attrs}>
                         <ProperWrapper>
-                            <SearchVideoItem />
-                            <SearchVideoItem />
-                            <SearchVideoItem />
-                            <SearchVideoItem />
                             <SearchVideoItem />
                             <SearchVideoItem />
                             <SearchVideoItem />

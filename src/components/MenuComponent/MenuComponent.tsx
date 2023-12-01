@@ -16,16 +16,21 @@ const MenuComponent = ({ className: customClassName }: { className: string; coll
             exact: 'exact',
         },
         {
+            content: 'Movies',
+            to: '/movies',
+        },
+        {
+            content: 'Coming soon',
+            to: '/coming-soon',
+        },
+        {
             content: 'Features',
-            to: '/features',
-        },
-        {
-            content: 'Series',
-            to: '/series',
-        },
-        {
-            content: 'My List',
-            to: '/mylist',
+            children: [
+                { content: 'tags', to: '/tags' },
+                { content: 'studios', to: '/studios' },
+                { content: 'series', to: '/series' },
+                { content: 'uncensored', to: '/uncensored' },
+            ],
         },
     ];
 
