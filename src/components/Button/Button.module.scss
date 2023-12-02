@@ -1,8 +1,13 @@
 .wrapper {
+    width: 100%;
+    display: inline-flex;
+    padding: 8px 16px;
     color: var(--black-color, #2b2b2b);
     line-height: 1.42857;
     white-space: nowrap;
-    width: 100%;
+
+    font-size: 1.4rem;
+    font-weight: 600;
 
     &.active {
         text-decoration: underline;
@@ -24,11 +29,8 @@
         display: inline-flex;
         padding: 8px 16px;
         cursor: pointer;
-        align-items: center;
         border-radius: 4px;
         background: var(--white-color, #fff);
-        font-size: 1.4rem;
-        font-weight: 700;
         outline: none;
         transition: background 0.3s ease-out;
 
@@ -38,11 +40,11 @@
         }
     }
 
-    &.icon {
+    .icon {
         display: block;
-        margin-right: 4px;
-        width: 24px;
-        height: 24px;
+        margin-right: 0.4rem;
+        width: 20px;
+        height: 20px;
         -o-object-fit: cover;
         object-fit: cover;
         background: transparent;

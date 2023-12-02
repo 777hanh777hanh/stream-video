@@ -6,9 +6,13 @@ import styles from './HeaderComponent.module.scss';
 import MenuComponent from '~components/MenuComponent';
 import Button from '~components/Button';
 import { SearchComponent } from '~components/Search';
+import HeaderUserComponent from './HeaderUserComponent';
 
 const HeaderComponent = ({ className: customClassName }: { className: string }) => {
     const cx = useClassNames(styles);
+    const user = {
+        isSigningIn: true,
+    };
     const navigate = useNavigate();
 
     const handleNavigateToLogin = () => {
@@ -25,9 +29,11 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
             </div>
             <SearchComponent className={'search'} />
             <div className={cx('cta')}>
-                <Button disabled btn className={cx('login')} onClick={handleNavigateToLogin}>
-                    Đăng nhập
-                </Button>
+                {(!user.isSigningIn && (
+                    <Button btn className={cx('login')} onClick={handleNavigateToLogin}>
+                        Đăng nhập
+                    </Button>
+                )) || <HeaderUserComponent />}
             </div>
         </header>
     );
