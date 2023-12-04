@@ -16,7 +16,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3, 5]);
+            // setSearchResult([1, 2, 3, 5]);
         }, 1000);
     });
 
@@ -35,6 +35,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
             <Tippy
                 interactive
                 visible={searchResult.length > 0}
+                placement="auto"
                 zIndex={4}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex={-1} {...attrs}>

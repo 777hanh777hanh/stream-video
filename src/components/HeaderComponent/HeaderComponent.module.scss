@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 12px 0;
     column-gap: 23px;
 
     .login {
@@ -16,13 +17,13 @@
     .side {
         display: flex;
         align-items: center;
+        flex: 1;
     }
 
     .logo {
         width: 50px;
         height: 50px;
-        // margin: 0 auto;
-        display: block;
+        display: flex;
         white-space: nowrap;
         text-align: left;
         cursor: default;
@@ -35,11 +36,76 @@
         object-fit: cover;
     }
 
+    .header-toggle {
+        display: none;
+        max-width: 48px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .menu {
         margin-left: 23px;
     }
 
+    .search {
+        margin: 0 auto;
+    }
+
     .search-result {
         width: 100%;
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media screen and (max-width: 991.98px) {
+    .header {
+        flex-wrap: wrap;
+
+        .header-toggle {
+            display: flex;
+        }
+
+        .user {
+            display: block;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.show {
+            display: block;
+            flex-basis: 100%;
+        }
+
+        .side {
+            flex-direction: column;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .search,
+        .menu {
+            margin: 20px 0 0;
+            width: 100%;
+        }
+
+        .cta {
+            flex-basis: 100%;
+            display: none;
+        }
     }
 }

@@ -1,4 +1,5 @@
 .menu-item {
+    position: relative;
     padding: 8px 12px;
     cursor: pointer;
     font-size: 1.4rem;
@@ -19,5 +20,42 @@
     .menu-item {
         text-align: start;
         padding: 11px 16px;
+    }
+}
+
+.fade {
+    opacity: 1;
+    animation: fadeOutAnimation 0.4s linear forwards;
+}
+
+@keyframes fadeOutAnimation {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .menu-item {
+        width: 100%;
+    }
+    // .menu-sub-item {
+    //     // top: 100%;
+    //     // left: 0;
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     z-index: 1111;
+    // }
+
+    // .menu-item:hover .sub-menu-block {
+    //     position: relative;
+    //     background: red;
+    // }
+
+    .menu-sub-item {
+        width: 100%;
     }
 }

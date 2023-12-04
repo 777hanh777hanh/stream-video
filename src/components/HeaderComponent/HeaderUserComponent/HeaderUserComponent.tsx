@@ -5,35 +5,13 @@ import { useClassNames } from '~/hooks';
 import styles from './HeaderUserComponent.module.scss';
 import Button from '~components/Button';
 import { Wrapper as ProperWrapper } from '~components/Proper';
-import { ProfileIcon, BookmarkIcon, LogoutIcon } from '~assets/icons';
 import Image from '~/components/Image';
+import { menuAccount } from '~/utils';
 
-const HeaderUserComponent = (data: any) => {
+const HeaderUserComponent = ({ className, ...data }) => {
     const cx = useClassNames(styles);
 
-    const userMenu = [
-        {
-            content: 'Thông tin',
-            to: '/info',
-            link: true,
-            icon: <ProfileIcon />,
-        },
-        {
-            content: 'Thư viện',
-            to: '/my-list',
-            link: true,
-            icon: <BookmarkIcon />,
-        },
-        {
-            icon: <LogoutIcon />,
-            separate: true,
-            content: 'Đăng xuất',
-            link: true,
-            onClick: () => {
-                alert('Đăng xuất');
-            },
-        },
-    ];
+    const userMenu = menuAccount;
 
     const renderMenuUser = (attrs: any) => {
         return (
@@ -64,7 +42,7 @@ const HeaderUserComponent = (data: any) => {
             delay={[0, 700]}
             render={(attrs) => renderMenuUser(attrs)}
         >
-            <div className={cx('user')}>
+            <div className={cx('user', className)}>
                 <Image
                     className={cx('user-avatar')}
                     src={images.noImage}

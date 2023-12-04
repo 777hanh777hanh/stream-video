@@ -41,7 +41,10 @@
     }
 
     .icon {
-        display: block;
+        justify-self: flex-start;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         margin-right: 0.4rem;
         width: 20px;
         height: 20px;

@@ -4,7 +4,7 @@ function LogoutIcon({ className = '', width = '1.6rem', height = '1.6rem', ...re
             className={className}
             width={width}
             height={height}
-            viewBox="0 0 512 512"
+            viewBox="-20 0 550 512"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             {...rest}

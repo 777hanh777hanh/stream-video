@@ -2,3 +2,23 @@
     display: flex;
     gap: 6px;
 }
+
+.navbar-nav-mobile {
+    display: none;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        flex-direction: column;
+        background: var(--gray-color);
+        border-radius: 8px;
+        position: relative;
+        width: 100%;
+        display: none;
+    }
+
+    .navbar-nav-mobile {
+        display: flex;
+    }
+}

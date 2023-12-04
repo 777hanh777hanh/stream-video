@@ -8,7 +8,7 @@
     padding-bottom: 8px;
     max-height: min((100vh - 96px) - 60px, 734px);
     border-radius: 8px;
-    background: #616161;
+    background: var(--gray-color, #616161);
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     overflow-y: overlay;
 

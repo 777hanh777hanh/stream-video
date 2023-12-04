@@ -4,7 +4,7 @@ function ProfileIcon({ className = '', width = '2rem', height = '2rem', ...rest 
             className={className}
             width={width}
             height={height}
-            viewBox="0 0 50 50"
+            viewBox="7 0 50 50"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             {...rest}
