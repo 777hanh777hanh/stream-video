@@ -4,7 +4,7 @@ import { HomePage, SignInPage } from '~/pages';
 
 const routes = {
     home: '/',
-    watch: '/watch',
+    watch: '/watch/:id',
     signin: '/signin',
     signup: '/signup',
     logout: '/logout',
@@ -37,6 +37,11 @@ const publicRoutes: RoutesProps[] = [
     {
         path: routes.signin,
         component: SignInPage,
+        layout: LandingLayout,
+    },
+    {
+        path: routes.watch,
+        component: HomePage,
         layout: LandingLayout,
     },
     // ...

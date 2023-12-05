@@ -48,6 +48,7 @@
         font-size: 1.4rem;
         margin: auto 12px;
         z-index: 1;
+        background: transparent;
         transition: all 0.3s ease-in-out;
     }
 
@@ -57,7 +58,19 @@
 
     .clear-icon {
         color: var(--text-color, #ccc);
-        background-color: var(--background-color);
+    }
+
+    .loading-icon {
+        animation: identifier 1s linear infinite;
+
+        @keyframes identifier {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     }
 
     .searchIconWrapper {
@@ -72,15 +85,23 @@
         & ~ .clear-btn {
             translate: -40px 0;
         }
-    }
-}
 
-@media screen and (max-width: 991.98px) {
-    .search-bar {
-        .search,
-        .search-result {
-            width: 100%;
-            max-width: 500px;
+        & ~ .search-btn {
+            color: var(--primary-color);
+
+            &:hover {
+                color: var(--text-color);
+            }
         }
     }
 }
+
+// @media screen and (max-width: 991.98px) {
+//     .search-bar {
+//         .search,
+//         .search-result {
+//             width: 100%;
+//             max-width: 500px;
+//         }
+//     }
+// }

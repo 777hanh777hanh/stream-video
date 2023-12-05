@@ -69,43 +69,43 @@
     }
 }
 
-// Medium devices (tablets, 768px and up)
-@media screen and (max-width: 991.98px) {
-    .header {
-        flex-wrap: wrap;
+// // Medium devices (tablets, 768px and up)
+// @media screen and (max-width: 991.98px) {
+//     .header {
+//         flex-wrap: wrap;
 
-        .header-toggle {
-            display: flex;
-        }
+//         .header-toggle {
+//             display: flex;
+//         }
 
-        .user {
-            display: block;
-        }
+//         .user {
+//             display: block;
+//         }
 
-        .content {
-            display: none;
-        }
+//         .content {
+//             display: none;
+//         }
 
-        .content.show {
-            display: block;
-            flex-basis: 100%;
-        }
+//         .content.show {
+//             display: block;
+//             flex-basis: 100%;
+//         }
 
-        .side {
-            flex-direction: column;
-            width: 100%;
-            align-items: flex-start;
-        }
+//         .side {
+//             flex-direction: column;
+//             width: 100%;
+//             align-items: flex-start;
+//         }
 
-        .search,
-        .menu {
-            margin: 20px 0 0;
-            width: 100%;
-        }
+//         .search,
+//         .menu {
+//             margin: 20px 0 0;
+//             width: 100%;
+//         }
 
-        .cta {
-            flex-basis: 100%;
-            display: none;
-        }
-    }
-}
+//         .cta {
+//             flex-basis: 100%;
+//             display: none;
+//         }
+//     }
+// }
