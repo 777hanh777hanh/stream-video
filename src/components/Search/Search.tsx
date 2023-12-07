@@ -1,7 +1,7 @@
 import { useRef, useState, forwardRef, useEffect } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
-import { useClassNames } from '~/hooks';
+import { useClassNames, useDebounce } from '~/hooks';
 import styles from './Search.module.scss';
 import Button from '~components/Button';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~assets/icons';
@@ -17,7 +17,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
     const [showSearchResult, setShowSearchResult] = useState(true);
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!useDebounce(searchValue, 700).trim()) {
             setSearchResult([]);
             return;
         }
@@ -31,7 +31,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
             .catch(() => {
                 setIsLoading(false);
             });
-    }, [searchValue]);
+    }, [useDebounce(searchValue, 700)]);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -60,8 +60,8 @@ const Search = ({ className: cusClassName }, ref: any) => {
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex={-1} {...attrs}>
                         <ProperWrapper>
-                            {searchResult.map((result) => (
-                                <SearchVideoItem data={result} />
+                            {searchResult.map((result, index) => (
+                                <SearchVideoItem key={index} data={result} />
                             ))}
                         </ProperWrapper>
                     </div>
