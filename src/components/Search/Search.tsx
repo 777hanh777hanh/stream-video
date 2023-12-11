@@ -7,6 +7,7 @@ import Button from '~components/Button';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~assets/icons';
 import ProperWrapper from '~components/Proper/Wrapper';
 import SearchVideoItem from './SearchVideoItem';
+import * as searchService from '~/services/searchService';
 
 const Search = ({ className: cusClassName }, ref: any) => {
     const cx = useClassNames(styles);
@@ -23,16 +24,20 @@ const Search = ({ className: cusClassName }, ref: any) => {
             setSearchResult([]);
             return;
         }
-        setIsLoading(true);
-        fetch(`https://ihentai.de/api/search?page=1&limit=5&s=${debounceSearchValue.replace(/ /g, '+')}`, {})
-            .then((res) => res.json())
-            .then((data) => {
-                setSearchResult(data.videos);
+
+        const fetchSearchResult = async () => {
+            setIsLoading(true);
+            try {
+                const response = await searchService.search(debounceSearchValue);
+
+                setSearchResult(response.videos);
                 setIsLoading(false);
-            })
-            .catch(() => {
+            } catch (error) {
                 setIsLoading(false);
-            });
+            }
+        };
+
+        fetchSearchResult();
     }, [debounceSearchValue]);
 
     const inputRef = useRef<HTMLInputElement>(null);

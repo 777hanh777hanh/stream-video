@@ -31,7 +31,7 @@ const MenuItemComponent = ({ data, ...props }: any) => {
         compProps.ref = subRef;
         compProps.maxWidth = '100%';
         compProps.zIndex = 5;
-        compProps.hideOnClick = true;
+        compProps.hideOnClick = false;
         compProps.arrow = false;
         compProps.placement = 'bottom-start';
         compProps.delay = [0, 700];

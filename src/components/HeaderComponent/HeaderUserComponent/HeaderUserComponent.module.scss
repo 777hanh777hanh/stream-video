@@ -14,11 +14,13 @@
 
 .menu-user {
     outline: 1px solid rgba(var(--primary-color), 1);
+
     .menu-user-item {
         padding: 10px 15px;
         cursor: pointer;
-        transition: all 0.3s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.4s ease-in-out;
         background: transparent;
+        border-radius: 0px;
 
         &:hover {
             background-color: var(--background-color);

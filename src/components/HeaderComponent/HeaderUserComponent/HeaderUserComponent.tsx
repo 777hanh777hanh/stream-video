@@ -40,6 +40,7 @@ const HeaderUserComponent = ({ className, ...data }) => {
             placement="bottom-start"
             offset={[10, 10]}
             delay={[0, 700]}
+            hideOnClick={false}
             render={(attrs) => renderMenuUser(attrs)}
         >
             <div className={cx('user', className)}>
