@@ -16,13 +16,15 @@ const Search = ({ className: cusClassName }, ref: any) => {
     const [isLoading, setIsLoading] = useState(false);
     const [showSearchResult, setShowSearchResult] = useState(true);
 
+    const debounceSearchValue = useDebounce(searchValue, 700);
+
     useEffect(() => {
-        if (!useDebounce(searchValue, 700).trim()) {
+        if (!debounceSearchValue.trim()) {
             setSearchResult([]);
             return;
         }
         setIsLoading(true);
-        fetch(`https://ihentai.de/api/search?page=1&limit=5&s=${searchValue.replace(/ /g, '+')}`, {})
+        fetch(`https://ihentai.de/api/search?page=1&limit=5&s=${debounceSearchValue.replace(/ /g, '+')}`, {})
             .then((res) => res.json())
             .then((data) => {
                 setSearchResult(data.videos);
@@ -31,7 +33,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
             .catch(() => {
                 setIsLoading(false);
             });
-    }, [useDebounce(searchValue, 700)]);
+    }, [debounceSearchValue]);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
