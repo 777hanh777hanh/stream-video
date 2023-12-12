@@ -6,8 +6,16 @@
     margin: 0 auto;
     font-family: var(--font-family);
     color: var(--text-color);
-}
 
-.main {
-    flex: 1;
+    .header {
+        z-index: 9999;
+    }
+
+    .main {
+        flex: 1;
+        background-color: var(--black-color);
+        overflow: hidden;
+        border-radius: 8px;
+        padding: 12px 16px;
+    }
 }

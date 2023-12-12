@@ -1,0 +1,59 @@
+// list-videos
+.list-videos {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    .list-videos-cta {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .title {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .more-btn {
+        margin-left: 1.4rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        cursor: pointer;
+    }
+
+    .list {
+        margin-top: 2vw;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 2vw;
+    }
+
+    .list-pagination {
+        top: calc(100% + 1rem);
+    }
+
+    .splide__arrow {
+        height: 100%;
+        border-radius: 8px;
+        opacity: 0.2;
+        transition: opacity 0.25s linear;
+        background-color: rgba(0, 0, 0, 0.3);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &--next {
+            right: 0;
+        }
+
+        &--prev {
+            left: 0;
+            top: 0;
+            transform: rotateY(180deg);
+        }
+    }
+}

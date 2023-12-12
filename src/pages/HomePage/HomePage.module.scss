@@ -1,0 +1,10 @@
+.wrapper {
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+.list-video + .list-video {
+    margin-top: 5vw;
+}

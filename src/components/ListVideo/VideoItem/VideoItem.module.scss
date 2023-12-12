@@ -1,0 +1,33 @@
+// video
+.video {
+    width: 16.6667%;
+    flex-shrink: 0;
+    padding: 0 0.2vw;
+
+    .thumb {
+        position: relative;
+        padding: 88.888% 0;
+        height: 0;
+        overflow: hidden;
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+
+        .img {
+            position: absolute;
+            inset: 0;
+        }
+    }
+
+    .title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        line-height: 1.5;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+}
