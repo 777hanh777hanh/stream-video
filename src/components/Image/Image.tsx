@@ -18,6 +18,7 @@ const Image = ({ src, alt, className, fallback = images.noImage, ...props }: any
             alt={alt}
             {...props}
             ref={ref}
+            loading="lazy"
             onError={handleError}
         />
     );

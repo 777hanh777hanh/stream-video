@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-// import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
+import { useMemo } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './ListVideo.module.scss';
+import Slider, { SliderItem } from '~components/Slider';
 import VideoItem from './VideoItem';
 
 const ListVideo = ({ data, className: customClassName, ...props }) => {
-    const cx = useClassNames(style);
+    const cx = useMemo(() => useClassNames(style), []);
     const passProps = { ...props };
 
     return (
@@ -21,10 +21,16 @@ const ListVideo = ({ data, className: customClassName, ...props }) => {
             </div>
             {/* Slider */}
             <div className={cx('list')}>
-                {data.videos.map((video: any) => {
-                    // Hover to show video modal list
-                    return <VideoItem key={video.id} data={video} />;
-                })}
+                <Slider>
+                    {data.videos.map((video: any, key: any) => {
+                        // Hover to show video modal list
+                        return (
+                            <SliderItem key={key}>
+                                <VideoItem data={video} />
+                            </SliderItem>
+                        );
+                    })}
+                </Slider>
             </div>
         </section>
     );

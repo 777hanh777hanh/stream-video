@@ -1,6 +1,7 @@
 // video
 .video {
-    width: 16.6667%;
+    // width: 16.6667%;
+    width: 100%;
     flex-shrink: 0;
     padding: 0 0.2vw;
 
@@ -29,5 +30,6 @@
         display: -webkit-box;
         -webkit-line-clamp: 2; /* number of lines to show */
         -webkit-box-orient: vertical;
+        text-align: start;
     }
 }

@@ -6,3 +6,4 @@ export { default as SettingIcon } from './setting';
 export { default as LogoutIcon } from './logout';
 export { default as MenuIcon } from './menu';
 export { default as LoadingIcon } from './loading';
+export { default as ChevronIcon } from './chevron';

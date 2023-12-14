@@ -1,0 +1,31 @@
+.slider-item {
+    flex-shrink: 0;
+    width: calc(100% / 6);
+    padding: 0.8vw 1.2vw;
+    color: #fff;
+    text-align: center;
+    background-color: #282828;
+    align-self: stretch;
+}
+
+.content {
+    height: 100%;
+}
+
+@media screen and (max-width: 991.99px) {
+    .slider-item {
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 768.99px) {
+    .slider-item {
+        width: 33.333%;
+    }
+}
+
+@media screen and (max-width: 468.99px) {
+    .slider-item {
+        width: 50%;
+    }
+}
