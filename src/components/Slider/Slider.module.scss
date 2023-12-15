@@ -9,12 +9,16 @@
         width: 100%;
     }
 
-    .slider-list {
+    .slider-list-wrapper {
         width: calc(100% - 10%);
+        overflow: hidden;
+    }
+
+    .slider-list {
+        width: 100%;
         display: flex;
         align-items: center;
         transition: transform 0.4s linear;
-        overflow: hidden;
         z-index: 1;
     }
 
@@ -67,14 +71,31 @@
 
         & .page {
             width: 1.2vw;
-            height: 0.3vw;
+            height: 2px;
             background-color: var(--white-color);
             border-radius: 999px;
-            transition: background-color 0.4s ease-in;
+            // transition: background-color 0.4s ease-in;
+            position: relative;
 
-            &.active {
+            &::after {
+                position: absolute;
+                content: '';
+                top: 0;
+                bottom: 0;
+                right: 0;
+                width: 0;
+                border-radius: inherit;
                 background-color: var(--primary-color);
+                transition: width 0.4s ease-in;
+            }
+
+            &.active::after {
+                left: 0;
+                width: 100%;
             }
         }
+        // & .active.page::after {
+        //     background-color: var(--primary-color);
+        // }
     }
 }

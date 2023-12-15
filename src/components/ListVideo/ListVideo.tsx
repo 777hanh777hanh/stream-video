@@ -3,8 +3,7 @@ import { useMemo } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './ListVideo.module.scss';
-import Slider, { SliderItem } from '~components/Slider';
-import VideoItem from './VideoItem';
+import Slider from '~components/Slider';
 
 const ListVideo = ({ data, className: customClassName, ...props }) => {
     const cx = useMemo(() => useClassNames(style), []);
@@ -21,16 +20,7 @@ const ListVideo = ({ data, className: customClassName, ...props }) => {
             </div>
             {/* Slider */}
             <div className={cx('list')}>
-                <Slider>
-                    {data.videos.map((video: any, key: any) => {
-                        // Hover to show video modal list
-                        return (
-                            <SliderItem key={key}>
-                                <VideoItem data={video} />
-                            </SliderItem>
-                        );
-                    })}
-                </Slider>
+                <Slider data={data.videos} />
             </div>
         </section>
     );
