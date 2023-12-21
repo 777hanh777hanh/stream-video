@@ -10,7 +10,8 @@
         "preview": "vite preview",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
-        "homepage": "https://777hanh777hanh.github.io/stream-video"
+        "homepage": "https://777hanh777hanh.github.io/stream-video",
+        "start": "vite"
     },
     "dependencies": {
         "@tippyjs/react": "^4.2.6",
