@@ -1,10 +1,11 @@
 import React from 'react';
+import WatchComponent from '~components/WatchComponent';
 import { DefaultLayout, LandingLayout } from '~/layouts';
 import { HomePage, SignInPage } from '~/pages';
 
 const routes = {
     home: '/',
-    watch: '/watch/:id',
+    watch: '/watch/:slug',
     signin: '/signin',
     signup: '/signup',
     logout: '/logout',
@@ -28,20 +29,16 @@ const publicRoutes: RoutesProps[] = [
         path: routes.home,
         component: HomePage,
         layout: DefaultLayout,
+        children: [{ path: routes.watch, component: WatchComponent, layout: LandingLayout }],
     },
     {
         path: `${routes.home}/index.html`,
         component: HomePage,
-        layout: LandingLayout,
+        layout: DefaultLayout,
     },
     {
         path: routes.signin,
         component: SignInPage,
-        layout: LandingLayout,
-    },
-    {
-        path: routes.watch,
-        component: HomePage,
         layout: LandingLayout,
     },
     // ...
@@ -49,4 +46,4 @@ const publicRoutes: RoutesProps[] = [
 
 // privateRoutes
 
-export { publicRoutes };
+export { routes, publicRoutes };

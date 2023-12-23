@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './HomePage.module.scss';
 import ListVideo from '~/components/ListVideo';
 import * as homeService from '~/services/homeService';
+import { Outlet } from 'react-router-dom';
 
 const HomePage = () => {
     const cx = useClassNames(style);
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const containerRef = useRef<any>();
 
     useEffect(() => {
         const fetchHomeData = async () => {
@@ -27,7 +30,7 @@ const HomePage = () => {
 
     return (
         <section className={cx('wrapper')}>
-            <div className={cx('container')}>
+            <div className={cx('container')} ref={containerRef}>
                 {!isLoading && (
                     <>
                         {data.map((item, index) => {
@@ -36,6 +39,7 @@ const HomePage = () => {
                     </>
                 )}
             </div>
+            <Outlet />
         </section>
     );
 };

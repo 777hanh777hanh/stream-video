@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
 import style from './VideoItem.module.scss';
@@ -7,13 +7,21 @@ import Image from '~/components/Image';
 
 const VideoItem = ({ data, ...passProps }) => {
     const cx = useClassNames(style);
+
+    const navigate = useNavigate();
+
     const props = { ...passProps };
+
     data.path = `/watch${data.slug}`;
+
+    const navigateToWatch = () => {
+        navigate(data.path);
+    };
 
     return (
         // <Modal data={data}>
         <div className={cx('video')} {...props}>
-            <div className={cx('thumb')}>
+            <div className={cx('thumb')} onClick={navigateToWatch}>
                 {/* <Link to={data.path}> */}
                 <Image className={cx('img')} src={data.thumbnail} alt={data.title} />
                 {/* </Link> */}
