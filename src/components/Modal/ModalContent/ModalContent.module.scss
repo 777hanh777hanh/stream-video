@@ -1,0 +1,19 @@
+.wrapper {
+    background-color: var(--background-color, #000);
+    border-radius: calc(8px + 0.8vw);
+    padding: 0.8vw 1.2vw;
+    overflow: hidden;
+
+    .thumb {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .title {
+        margin-top: 0.5rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 1.5;
+        text-align: start;
+    }
+}
