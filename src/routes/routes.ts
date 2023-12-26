@@ -1,6 +1,6 @@
 import React from 'react';
 import WatchComponent from '~components/WatchComponent';
-import { DefaultLayout, LandingLayout } from '~/layouts';
+import { DefaultLayout, LandingLayout, NoneLayout } from '~/layouts';
 import { HomePage, SignInPage } from '~/pages';
 
 const routes = {
@@ -29,7 +29,7 @@ const publicRoutes: RoutesProps[] = [
         path: routes.home,
         component: HomePage,
         layout: DefaultLayout,
-        children: [{ path: routes.watch, component: WatchComponent, layout: LandingLayout }],
+        children: [{ path: routes.watch, component: WatchComponent, layout: NoneLayout }],
     },
     {
         path: `${routes.home}/index.html`,
