@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { forwardRef } from 'react';
 
 import { useClassNames } from '~/hooks';
 import images from '~/assets/images';
@@ -8,7 +9,7 @@ import Button from '~components/Button';
 import { SearchComponent } from '~components/Search';
 import HeaderUserComponent from './HeaderUserComponent';
 
-const HeaderComponent = ({ className: customClassName }: { className: string }) => {
+const HeaderComponent = ({ className: customClassName }: { className: string }, ref: any) => {
     const cx = useClassNames(styles);
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
     };
 
     return (
-        <header className={cx('header', customClassName)}>
+        <header className={cx('header', customClassName)} ref={ref}>
             <Link to="/" className={cx('logo')}>
                 <img className={'logo-img'} src={images.logo} alt="777hanh-logo" srcSet={images.logo} />
             </Link>
@@ -42,4 +43,4 @@ const HeaderComponent = ({ className: customClassName }: { className: string }) 
     );
 };
 
-export default HeaderComponent;
+export default forwardRef(HeaderComponent);
