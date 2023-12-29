@@ -24,7 +24,7 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     return (
-        <>
+        <div className={cx('wrapper')}>
             <div className={cx('container')} ref={containerRef}>
                 <div>
                     <HeaderComponent className={cx('header')} />
@@ -33,7 +33,7 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
             </div>
             <Outlet context={{ wrapperRef: containerRef, currentScroll: scrollTopValue }} />
-        </>
+        </div>
     );
 };
 
