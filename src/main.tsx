@@ -10,7 +10,7 @@ import './index.css';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 // deploy on github pages => repo name: stream-video
-const basename = isDevelopment ? '/' : '/stream-video';
+const basename = isDevelopment ? '/stream-video' : '/stream-video';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

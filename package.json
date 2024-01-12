@@ -10,7 +10,7 @@
         "preview": "vite preview",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist",
-        "homepage": "https://777hanh777hanh.github.io/stream-video",
+        "homepage": "https://777hanh777hanh.github.io/",
         "start": "vite"
     },
     "dependencies": {
