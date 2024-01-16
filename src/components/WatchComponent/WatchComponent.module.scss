@@ -2,42 +2,122 @@
     position: static;
     z-index: 99999;
     width: 100%;
+    min-height: 100vh;
     scroll-behavior: smooth;
     overscroll-behavior: contain;
     will-change: scroll-position;
-}
-
-.overlay {
-    width: 100%;
-    height: 100%;
-    min-height: 110vh;
-    overflow: auto;
-    background-color: rgba($color: #000000, $alpha: 0.4);
     display: flex;
     justify-content: center;
-    overflow-y: contain;
 
-    // transition
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s ease-in-out;
-    transition-property: opacity, visibility;
-
-    &.show {
-        opacity: 1;
-        visibility: visible;
+    .container {
+        position: relative;
+        margin-top: 2rem;
+        width: min(85rem, calc(100% - 4rem));
+        min-height: 100%;
+        background-color: red;
+        border-top-right-radius: 0.4rem;
+        border-top-left-radius: 0.4rem;
     }
-}
 
-.container {
-    width: 65%;
-    height: auto;
-    min-height: 2000px;
-}
+    .thumb {
+        position: relative;
+        padding-top: 56.25%;
+        height: 0;
+        border-radius: inherit;
+        overflow: hidden;
+        background-position: center;
+        background-size: cover;
 
-.test {
-    background-color: red;
-    width: 100%;
-    position: fixed;
-    inset: 0;
+        .img {
+            border-radius: unset;
+            position: absolute;
+            margin: 0 auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+        .img__background {
+            border-radius: unset;
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: blur(0.4rem);
+        }
+
+        .thumb__details {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: linear-gradient(0deg, #181818, transparent 50%);
+
+            .thumb__cta {
+                position: absolute;
+                bottom: 0;
+                display: flex;
+                margin: 1.6rem;
+                min-height: 3.2rem;
+                align-items: center;
+                z-index: 2;
+                color: var(--text-color);
+            }
+
+            .thumb__cta-item {
+                margin-bottom: 1.6rem;
+                font-size: clamp(1.1rem, 1vw + 1rem, 1.6rem);
+            }
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1.6rem;
+        width: 3.6rem;
+        height: 3.6rem;
+        aspect-ratio: 1/1;
+        background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        transition-property: box-shadow;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in;
+        cursor: pointer;
+        z-index: 5;
+
+        user-select: none;
+
+        .close__icon {
+            color: var(--white-color);
+            font-size: 2.4rem;
+            font-weight: 300;
+            line-height: 0.5;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0.5rem 0.3rem var(--primary-color-opacity);
+        }
+    }
+
+    // Back Drop
+    .backDrop {
+        position: fixed;
+        inset: 0;
+        background-color: var(--black-color-opacity);
+        z-index: -1;
+
+        // transition
+        visibility: visible;
+        opacity: 0;
+        transition-property: visibility, opacity;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+    }
 }
