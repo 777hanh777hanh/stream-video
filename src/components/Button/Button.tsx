@@ -13,6 +13,7 @@ const Button = (
         icon,
         link,
         btn,
+        circle,
         navlink,
         disabled,
         defaultType,
@@ -25,6 +26,7 @@ const Button = (
     const classes = cx('wrapper', {
         btn,
         link,
+        circle,
         disabled,
         default: defaultType,
         [cusClassName]: cusClassName,

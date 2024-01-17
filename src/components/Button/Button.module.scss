@@ -33,11 +33,20 @@
         background: var(--white-color, #fff);
         outline: none;
         transition: background 0.3s ease-out;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
             background: var(--primary-color);
             color: var(--white-color, #fff);
         }
+    }
+
+    &.circle {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        line-height: 0.5;
+        box-sizing: border-box;
     }
 
     .icon {
