@@ -1,22 +1,26 @@
 import { memo, useMemo, useEffect, useState, useRef } from 'react';
-import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+// import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
 import style from './WatchComponent.module.scss';
-import { routes } from '~/routes';
+// import { routes } from '~/routes';
 import Image from '~components/Image';
+import { CloseIcon, HeartIcon, PlayIcon, PlusIcon } from '~/assets/icons';
+import Button from '../Button';
 
 const WatchComponent = () => {
     const cx = useMemo(() => useClassNames(style), []);
 
-    const [isShow, setIsShow] = useState(false);
+    const [_isShow, setIsShow] = useState(false);
 
-    const overlayRef = useRef<any>();
+    // const overlayRef = useRef<any>();
     const backDropRef = useRef<any>();
 
-    const { wrapperRef, currentScroll } = useOutletContext<any>();
+    // const { wrapperRef, currentScroll } = useOutletContext<any>();
+    const { wrapperRef } = useOutletContext<any>();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const navigateToHomePage = useMemo(
         () => () => {
@@ -37,7 +41,23 @@ const WatchComponent = () => {
             //     },
             //     { once: true },
             // );
-            // console.log(window.location.pathname.split('/').slice(0, -3));
+
+            // alert(`navigate` + window.location.pathname.split('/').slice(0, -3));
+
+            const pathNameToNavigate = () => {
+                const currentPathname = window.location.pathname;
+                let newPathname = currentPathname.split('/');
+                return slicePathname(newPathname).join('/');
+            };
+
+            const slicePathname = (pathname: string[]) => {
+                const pathnameSliced = pathname.slice(0, -1);
+                if (pathnameSliced.includes('watch')) {
+                    return slicePathname(pathnameSliced);
+                }
+                return pathnameSliced;
+            };
+            alert('return to ' + (pathNameToNavigate() || '/'));
         },
         [],
     );
@@ -81,23 +101,26 @@ const WatchComponent = () => {
                     <div className={cx('thumb__details')}>
                         {/* cta */}
                         <div className={cx('thumb__cta')}>
-                            <div className={cx('thumb__cta-item')}>
-                                <span className={cx('thumb__cta-icon')}>+</span>
+                            <Button btn className={cx('thumb__cta-item')} icon={<PlayIcon />}>
                                 <span className={cx('thumb__cta-text')}>Play</span>
-                            </div>
-                            <div className={cx('thumb__cta-item')}>
-                                <span className={cx('thumb__cta-icon')}>Add</span>
-                            </div>
-                            <div className={cx('thumb__cta-item')}>
-                                <span className={cx('thumb__cta-icon')}>Like</span>
-                            </div>
+                            </Button>
+                            <Button btn circle className={cx('thumb__cta-item', 'thumb__cta-item--circle')}>
+                                <span className={cx('thumb__cta-icon')}>
+                                    <PlusIcon />
+                                </span>
+                            </Button>
+                            <Button btn circle className={cx('thumb__cta-item', 'thumb__cta-item--circle')}>
+                                <span className={cx('thumb__cta-icon')}>
+                                    <HeartIcon className={cx('thumb__cta-icon')} />
+                                </span>
+                            </Button>
                         </div>
                     </div>
                 </div>
 
                 {/* Close icon*/}
                 <div className={cx('close')} onClick={navigateToHomePage}>
-                    <span className={cx('close__icon')}>X</span>
+                    <CloseIcon className={cx('close__icon')} />
                 </div>
 
                 {/* Info */}
@@ -112,41 +135,57 @@ const WatchComponent = () => {
                         <div className={cx('details__right')}>
                             <div className={cx('details__tags')}>
                                 <span className={cx('details__label')}>Alternative Titles:</span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Another Title</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Another Title
+                                    </Link>
                                 </span>
                             </div>
                             <div className={cx('details__tags')}>
                                 <span className={cx('details__label')}>Genres:</span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Big Boob</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Big Boob,
+                                    </Link>
                                 </span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Ahegao</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Ahegao,
+                                    </Link>
                                 </span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Fantasy</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Fantasy,
+                                    </Link>
                                 </span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Loli</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Loli
+                                    </Link>
                                 </span>
                             </div>
                             <div className={cx('details__tags')}>
                                 <span className={cx('details__label')}>Tags:</span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Another Title</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Another Title
+                                    </Link>
                                 </span>
                             </div>
                             <div className={cx('details__tags')}>
                                 <span className={cx('details__label')}>Studios:</span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">Manjin</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        Manjin,
+                                    </Link>
                                 </span>
                             </div>
                             <div className={cx('details__tags')}>
                                 <span className={cx('details__label')}>Release:</span>
-                                <span className={cx('details__tag-item')}>
-                                    <Link to="#!">2023</Link>
+                                <span>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        2023
+                                    </Link>
                                 </span>
                             </div>
                         </div>
