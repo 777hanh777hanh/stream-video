@@ -7,3 +7,7 @@ export { default as LogoutIcon } from './logout';
 export { default as MenuIcon } from './menu';
 export { default as LoadingIcon } from './loading';
 export { default as ChevronIcon } from './chevron';
+export { default as HeartIcon } from './heart';
+export { default as PlusIcon } from './plus';
+export { default as PlayIcon } from './play';
+export { default as CloseIcon } from './close';
