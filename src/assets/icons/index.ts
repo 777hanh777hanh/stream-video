@@ -10,4 +10,6 @@ export { default as ChevronIcon } from './chevron';
 export { default as HeartIcon } from './heart';
 export { default as PlusIcon } from './plus';
 export { default as PlayIcon } from './play';
+export { default as PlayIcon2 } from './play2';
 export { default as CloseIcon } from './close';
+export { default as EyeIcon } from './eye';
