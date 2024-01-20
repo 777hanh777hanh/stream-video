@@ -1,0 +1,13 @@
+// List
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+
+    &__title {
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: var(--white-color);
+    }
+}

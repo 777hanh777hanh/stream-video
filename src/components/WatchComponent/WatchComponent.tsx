@@ -9,6 +9,7 @@ import Image from '~components/Image';
 import { CloseIcon, HeartIcon, PlayIcon, PlusIcon } from '~/assets/icons';
 import Button from '../Button';
 import WatchDetail from './WatchDetail';
+import WatchList from './WatchList';
 
 const WatchComponent = () => {
     const cx = useMemo(() => useClassNames(style), []);
@@ -80,7 +81,7 @@ const WatchComponent = () => {
         }, 10);
     }, []);
 
-    const demoData = {
+    const demoDataDetailNeed = {
         title: 'This is Title',
         views: '1000 views',
         desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, adipisci architecto atque autem blanditiis consequatur cumque cupiditate deserunt doloribus ducimus ea, earum eligendi error esse est et, exercitationem explicabo facere fugiat fugit hic id illum impedit in incidunt ipsa iste iure labore laboriosam laborum magnam magni maiores maxime minima molestiae mollitia natus necessitatibus nemo neque nisi nobis nostrum nulla numquam obcaecati officia officiis omnis pariatur perferendis perspiciatis placeat quae quam quas quia quibusdam quidem quisquam quod quos ratione reiciendis rem repellat repellendus reprehenderit repudiandae rerum saepe sapiente sequi similique sint sit soluta sunt suscipit tempora tempore tenetur totam ullam unde vel veniam vero vitae voluptas voluptate voluptatem voluptates voluptatibus voluptatum.',
@@ -90,6 +91,8 @@ const WatchComponent = () => {
         studios: 'Manjin',
         release: 2023,
     };
+
+    const demoDataListNeed = {};
 
     return (
         <div className={cx('watch')} tabIndex={1}>
@@ -137,26 +140,10 @@ const WatchComponent = () => {
                 {/* Info */}
                 <div className={cx('info')}>
                     {/* details */}
-                    <WatchDetail data={demoData} />
+                    <WatchDetail data={demoDataDetailNeed} />
 
                     {/* list */}
-                    <div className={cx('wrapper')}>
-                        <div className={cx('list')}>
-                            <div className={cx('list__title')}>Episode List</div>
-                            <div className={cx('list__item')}>
-                                <div className={cx('list__item-index')}>1</div>
-                                <div className={cx('list__item-poster')}>
-                                    <Image
-                                        className={cx('list__item-img')}
-                                        src="https://i.ytimg.com/vi/1La4QzGeaaQ/maxresdefault.jpg"
-                                        alt="thumb"
-                                    />
-                                </div>
-                                <div className={cx('list__item-title')}>Episode 1</div>
-                                <div className={cx('list__item-duration')}>10:00</div>
-                            </div>
-                        </div>
-                    </div>
+                    <WatchList data={demoDataListNeed} />
 
                     {/* recommend */}
                 </div>

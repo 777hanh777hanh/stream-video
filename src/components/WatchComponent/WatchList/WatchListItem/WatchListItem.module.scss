@@ -1,0 +1,100 @@
+.list__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--text-color);
+    border-bottom: 0.1rem solid var(--dark-separate-color);
+    cursor: pointer;
+
+    &:hover {
+        .list__item-icon {
+            opacity: 1;
+        }
+    }
+
+    &:first-of-type {
+        border-top: 0.1rem solid var(--dark-separate-color);
+    }
+
+    &.active {
+        background-color: var(--dark-color);
+    }
+
+    &-index {
+        font-size: 2.4rem;
+        display: flex;
+        justify-content: center;
+        flex: 0 0 7%;
+    }
+
+    &-poster {
+        position: relative;
+        border-radius: 0.4rem;
+        overflow: hidden;
+        flex: 0 0 18%;
+    }
+
+    &-play-icon {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        inset: 0;
+        width: 100%;
+        align-items: center;
+        background-image: linear-gradient(
+            195deg,
+            hsla(0, 0%, 9%, 0.7),
+            hsla(0, 0%, 9%, 0.5) 10%,
+            transparent 25%
+        );
+    }
+
+    &-icon {
+        padding: 0.5em;
+        width: 4.8em;
+        height: 4.8em;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        font-size: 1rem;
+        color: var(--white-color);
+        border: 0.1rem solid var(--white-color);
+        background-color: rgba(30, 30, 20, 0.5);
+
+        opacity: 0;
+        transition-property: opacity;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in;
+    }
+
+    &-info {
+        flex: 0 0 70%;
+        font-size: 1.6rem;
+    }
+
+    &-title {
+        display: flex;
+        padding: 1em 1em 0.5em;
+        justify-content: space-between;
+
+        color: var(--white-color);
+    }
+
+    &-views {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2em;
+    }
+
+    &-desc {
+        padding: 0 1em 1em;
+        font-size: 1.4rem;
+        min-height: 100%;
+
+        &.line-clamp {
+            padding: 0;
+            border: 1em solid transparent;
+            border-top: none;
+        }
+    }
+}
