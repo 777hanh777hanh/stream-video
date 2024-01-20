@@ -1,6 +1,6 @@
 import { memo, useMemo, useEffect, useState, useRef } from 'react';
 // import { Link, useNavigate, useOutletContext } from 'react-router-dom';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
 import style from './WatchComponent.module.scss';
@@ -8,6 +8,7 @@ import style from './WatchComponent.module.scss';
 import Image from '~components/Image';
 import { CloseIcon, HeartIcon, PlayIcon, PlusIcon } from '~/assets/icons';
 import Button from '../Button';
+import WatchDetail from './WatchDetail';
 
 const WatchComponent = () => {
     const cx = useMemo(() => useClassNames(style), []);
@@ -42,8 +43,6 @@ const WatchComponent = () => {
             //     { once: true },
             // );
 
-            // alert(`navigate` + window.location.pathname.split('/').slice(0, -3));
-
             const pathNameToNavigate = () => {
                 const currentPathname = window.location.pathname;
                 let newPathname = currentPathname.split('/');
@@ -57,6 +56,7 @@ const WatchComponent = () => {
                 }
                 return pathnameSliced;
             };
+
             alert('return to ' + (pathNameToNavigate() || '/'));
         },
         [],
@@ -79,6 +79,17 @@ const WatchComponent = () => {
             window.scrollTo(0, 0);
         }, 10);
     }, []);
+
+    const demoData = {
+        title: 'This is Title',
+        views: '1000 views',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, adipisci architecto atque autem blanditiis consequatur cumque cupiditate deserunt doloribus ducimus ea, earum eligendi error esse est et, exercitationem explicabo facere fugiat fugit hic id illum impedit in incidunt ipsa iste iure labore laboriosam laborum magnam magni maiores maxime minima molestiae mollitia natus necessitatibus nemo neque nisi nobis nostrum nulla numquam obcaecati officia officiis omnis pariatur perferendis perspiciatis placeat quae quam quas quia quibusdam quidem quisquam quod quos ratione reiciendis rem repellat repellendus reprehenderit repudiandae rerum saepe sapiente sequi similique sint sit soluta sunt suscipit tempora tempore tenetur totam ullam unde vel veniam vero vitae voluptas voluptate voluptatem voluptates voluptatibus voluptatum.',
+        alternativeTitles: ['Another Title', 'Another Title 2'],
+        genres: ['Big Boob', 'Ahegao', 'Fantasy', 'Romance', 'Vanilla', 'Loli'],
+        tags: ['Another Title', 'Another Title 2'],
+        studios: 'Manjin',
+        release: 2023,
+    };
 
     return (
         <div className={cx('watch')} tabIndex={1}>
@@ -126,72 +137,26 @@ const WatchComponent = () => {
                 {/* Info */}
                 <div className={cx('info')}>
                     {/* details */}
-                    <div className={cx('details')}>
-                        <div className={cx('details__left')}>
-                            <h2 className={cx('details__title')}>This is Title</h2>
-                            <div className={cx('details__view')}>1000 views</div>
-                            <div className={cx('details__desc')}>This is desc of this video</div>
-                        </div>
-                        <div className={cx('details__right')}>
-                            <div className={cx('details__tags')}>
-                                <span className={cx('details__label')}>Alternative Titles:</span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Another Title
-                                    </Link>
-                                </span>
-                            </div>
-                            <div className={cx('details__tags')}>
-                                <span className={cx('details__label')}>Genres:</span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Big Boob,
-                                    </Link>
-                                </span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Ahegao,
-                                    </Link>
-                                </span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Fantasy,
-                                    </Link>
-                                </span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Loli
-                                    </Link>
-                                </span>
-                            </div>
-                            <div className={cx('details__tags')}>
-                                <span className={cx('details__label')}>Tags:</span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Another Title
-                                    </Link>
-                                </span>
-                            </div>
-                            <div className={cx('details__tags')}>
-                                <span className={cx('details__label')}>Studios:</span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        Manjin,
-                                    </Link>
-                                </span>
-                            </div>
-                            <div className={cx('details__tags')}>
-                                <span className={cx('details__label')}>Release:</span>
-                                <span>
-                                    <Link className={cx('details__tag-item')} to="#!">
-                                        2023
-                                    </Link>
-                                </span>
+                    <WatchDetail data={demoData} />
+
+                    {/* list */}
+                    <div className={cx('wrapper')}>
+                        <div className={cx('list')}>
+                            <div className={cx('list__title')}>Episode List</div>
+                            <div className={cx('list__item')}>
+                                <div className={cx('list__item-index')}>1</div>
+                                <div className={cx('list__item-poster')}>
+                                    <Image
+                                        className={cx('list__item-img')}
+                                        src="https://i.ytimg.com/vi/1La4QzGeaaQ/maxresdefault.jpg"
+                                        alt="thumb"
+                                    />
+                                </div>
+                                <div className={cx('list__item-title')}>Episode 1</div>
+                                <div className={cx('list__item-duration')}>10:00</div>
                             </div>
                         </div>
                     </div>
-
-                    {/* list */}
 
                     {/* recommend */}
                 </div>
