@@ -10,6 +10,7 @@ import { CloseIcon, HeartIcon, PlayIcon, PlusIcon } from '~/assets/icons';
 import Button from '../Button';
 import WatchDetail from './WatchDetail';
 import WatchList from './WatchList';
+import WatchListCard from './WatchListCard';
 
 const WatchComponent = () => {
     const cx = useMemo(() => useClassNames(style), []);
@@ -19,8 +20,8 @@ const WatchComponent = () => {
     // const overlayRef = useRef<any>();
     const backDropRef = useRef<any>();
 
-    // const { wrapperRef, currentScroll } = useOutletContext<any>();
-    const { wrapperRef } = useOutletContext<any>();
+    const { wrapperRef, currentScroll } = useOutletContext<any>();
+    const currentScrollValue = useMemo(() => currentScroll, []);
 
     // const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ const WatchComponent = () => {
             //         wrapperRef.current.removeAttribute('tabindex');
             //         wrapperRef.current.style.zIndex = ``;
             //
-            //         window.scrollTo(0, currentScroll);
+            //         window.scrollTo(0, -currentScrollValue);
             //         navigate(routes.home);
             //     },
             //     { once: true },
@@ -65,10 +66,9 @@ const WatchComponent = () => {
 
     useEffect(() => {
         wrapperRef.current.setAttribute('tabindex', '-1');
-        const parentOffsetTop = wrapperRef.current.getBoundingClientRect().top;
 
         wrapperRef.current.style.position = 'fixed';
-        wrapperRef.current.style.top = `${parentOffsetTop}px`;
+        wrapperRef.current.style.top = `${currentScrollValue}px`;
         wrapperRef.current.style.zIndex = `0`;
 
         setTimeout(() => {
@@ -79,6 +79,8 @@ const WatchComponent = () => {
             // scroll to top
             window.scrollTo(0, 0);
         }, 10);
+
+        return () => {};
     }, []);
 
     const demoDataDetailNeed = {
@@ -93,6 +95,80 @@ const WatchComponent = () => {
     };
 
     const demoDataListNeed = {};
+
+    // const demoDataSections = useCallback(() => {
+    //     return [
+    //         {
+    //             title: 'Title 1',
+    //             videos: [],
+    //         },
+    //         {
+    //             title: 'Title 2',
+    //             term: {
+    //                 id: 102,
+    //                 name: 'Name of term',
+    //             },
+    //             videos: [
+    //                 {
+    //                     title: 'Video title 1',
+    //                     synopsis: 'Video DESCRIPTION',
+    //                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+    //                 },
+    //                 {
+    //                     title: 'Video title 2',
+    //                     synopsis: 'Video DESCRIPTION 2',
+    //                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+    //                 },
+    //                 {
+    //                     title: 'Video title 3',
+    //                     synopsis: 'Video DESCRIPTION 4',
+    //                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+    //                 },
+    //                 {
+    //                     title: 'Video title 4',
+    //                     synopsis: 'Video DESCRIPTION 4',
+    //                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+    //                 },
+    //             ],
+    //         },
+    //     ];
+    // }, []);
+
+    const demoSection = useMemo(() => {
+        return {
+            title: 'Title 2',
+            term: {
+                id: 102,
+                name: 'Name of term',
+            },
+            videos: [
+                {
+                    title: 'Video title 1',
+                    synopsis: 'Video DESCRIPTION',
+                    thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+                    views: 10000,
+                },
+                {
+                    title: 'Video title 2',
+                    synopsis: 'Video DESCRIPTION 2',
+                    thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+                    views: 10000,
+                },
+                {
+                    title: 'Video title 3',
+                    // synopsis: 'Video DESCRIPTION 3',
+                    thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+                    views: 10000,
+                },
+                {
+                    title: 'Video title 4',
+                    synopsis: 'Video DESCRIPTION 4',
+                    thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
+                    views: 10000,
+                },
+            ],
+        };
+    }, []);
 
     return (
         <div className={cx('watch')} tabIndex={1}>
@@ -146,6 +222,7 @@ const WatchComponent = () => {
                     <WatchList data={demoDataListNeed} />
 
                     {/* recommend */}
+                    <WatchListCard data={demoSection} />
                 </div>
             </div>
 
