@@ -1,0 +1,190 @@
+.list-card {
+    .list-card__header {
+        margin-top: 4.8rem;
+        margin-bottom: 2rem;
+        font-size: 2.4rem;
+        font-weight: 500;
+        color: var(--white-color);
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1em;
+        margin-bottom: 2.4rem;
+        align-items: stretch;
+        justify-items: stretch;
+
+        &--collapse {
+            max-height: 50rem;
+            overflow-y: hidden;
+        }
+    }
+
+    // Card
+    .card-item {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: hidden;
+
+        &__thumbnail {
+            position: relative;
+            height: 0;
+            padding-top: 65.25%;
+            border-radius: 0.4rem 0.4rem 0 0;
+            overflow: hidden;
+
+            &::before {
+                background-image: linear-gradient(
+                    198deg,
+                    rgba(0, 0, 0, 0.9),
+                    hsla(0, 0%, 9%, 0.5) 20%,
+                    transparent 28%
+                );
+                bottom: 0;
+                content: '';
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: 1;
+            }
+        }
+
+        &__img-bg,
+        &__img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            object-fit: contain;
+
+            &-bg {
+                object-fit: initial;
+                filter: blur(0.2rem);
+            }
+        }
+
+        &__play-icon {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            inset: 0;
+            width: 100%;
+            align-items: center;
+            background-image: linear-gradient(
+                195deg,
+                hsla(0, 0%, 9%, 0.7),
+                hsla(0, 0%, 9%, 0.5) 10%,
+                transparent 25%
+            );
+        }
+
+        &__icon {
+            padding: 0.5em;
+            width: 4.8em;
+            height: 4.8em;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            font-size: 1rem;
+            color: var(--white-color);
+            border: 0.1rem solid var(--white-color);
+            background-color: rgba(30, 30, 20, 0.5);
+
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in;
+        }
+
+        &__info {
+            background-color: var(--dark-color);
+            min-height: 100%;
+            line-height: 1.5;
+        }
+
+        &__metaData {
+            padding: 1em;
+            font-size: 1.6rem;
+        }
+
+        &__title {
+            font-size: 2rem;
+            color: var(--text-color);
+        }
+
+        &__views {
+            color: var(--gray-color);
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            gap: 0.3em;
+
+            &-icon {
+                min-height: 0;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        &__desc {
+            padding-bottom: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            .card-item__icon {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Divider
+    .list-card__divider {
+        $height: 9.6rem;
+
+        position: relative;
+        border-bottom: 2px solid #404040;
+        box-shadow: none;
+        display: flex;
+        height: $height;
+        justify-content: center;
+        margin: auto;
+        width: 100%;
+
+        &--collapse {
+            background-image: linear-gradient(
+                0deg,
+                #181818 0,
+                hsla(0, 0%, 9%, 0.7) 20%,
+                hsla(0, 0%, 9%, 0.4) 30%,
+                transparent 50%
+            );
+            margin-top: -$height;
+        }
+
+        &-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            bottom: 0;
+            position: absolute;
+            transform: translateY(50%);
+            aspect-ratio: 1/1;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--white-color-opacity);
+            border-radius: 50%;
+            color: var(--white-color);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
+}
