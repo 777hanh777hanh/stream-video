@@ -6,6 +6,7 @@
     --primary-color: #ff4081;
     --primary-color-opacity: rgba(255, 66, 129, 0.5);
     --black-color-opacity: rgba(22, 24, 35, 0.5);
+    --white-color-opacity: rgba(255, 255, 255, 0.7);
     --black-color: #161823;
     --white-color: #fff;
     --text-color: #ccc;
@@ -56,8 +57,7 @@ html *::-webkit-scrollbar-track {
 }
 
 button,
-input,
-[tabindex] {
+input {
     outline: none;
     border: none;
     font-family: inherit;
