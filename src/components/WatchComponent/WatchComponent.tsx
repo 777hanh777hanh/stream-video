@@ -143,24 +143,28 @@ const WatchComponent = () => {
             },
             videos: [
                 {
+                    id: 1,
                     title: 'Video title 1',
                     synopsis: 'Video DESCRIPTION',
                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
                     views: 10000,
                 },
                 {
+                    id: 2,
                     title: 'Video title 2',
                     synopsis: 'Video DESCRIPTION 2',
                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
                     views: 10000,
                 },
                 {
+                    id: 3,
                     title: 'Video title 3',
                     // synopsis: 'Video DESCRIPTION 3',
                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
                     views: 10000,
                 },
                 {
+                    id: 4,
                     title: 'Video title 4',
                     synopsis: 'Video DESCRIPTION 4',
                     thumbnail: 'https://i.pinimg.com/736x/63/23/f6/6323f60bf136b3e6e1b859ad36f6a87e.jpg',
@@ -168,6 +172,10 @@ const WatchComponent = () => {
                 },
             ],
         };
+    }, []);
+
+    const demoSectionLiked = useMemo(() => {
+        return { videos: [1, 4] };
     }, []);
 
     return (
@@ -222,7 +230,7 @@ const WatchComponent = () => {
                     <WatchList data={demoDataListNeed} />
 
                     {/* recommend */}
-                    <WatchListCard data={demoSection} />
+                    <WatchListCard data={demoSection} dataLiked={demoSectionLiked} />
                 </div>
             </div>
 

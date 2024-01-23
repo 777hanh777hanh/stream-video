@@ -108,6 +108,41 @@
         &__metaData {
             padding: 1em;
             font-size: 1.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__metaData-Follow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            aspect-ratio: 1/1;
+            font-size: 2rem;
+            color: var(--white-color);
+            border: 0.1rem solid var(--white-color);
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+
+            transition-property: background-color, color;
+            transition-duration: 0.15s;
+            transition-timing-function: ease-in;
+
+            &:hover {
+                background-color: var(--white-color-opacity);
+                color: var(--dark-color);
+            }
+
+            &.liked {
+                opacity: 0.7;
+                &:hover {
+                    cursor: default;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: var(--white-color);
+                }
+                stroke-width: 7.2rem;
+            }
         }
 
         &__title {
