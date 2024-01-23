@@ -13,3 +13,5 @@ export { default as PlayIcon } from './play';
 export { default as PlayIcon2 } from './play2';
 export { default as CloseIcon } from './close';
 export { default as EyeIcon } from './eye';
+export { default as ChevronDownIcon } from './chevronDown';
+export { default as CheckedIcon } from './checked';
