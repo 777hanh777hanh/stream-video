@@ -32,23 +32,46 @@ const WatchDetail: FC<WatchDetailProps> = ({
     const cx = useMemo(() => useClassNames(style), []);
     const classes = cx('wrapper', cusClassName || '');
 
-    const renderDetailTags = (label: string, items: string | string[] | number | number[]) => {
+    const renderDetailTags = (
+        label: string,
+        items:
+            | string
+            | string[]
+            | number
+            | number[]
+            | { id?: number; name?: string; slug?: string; taxonomy?: string; thumbnail?: string },
+    ) => {
         return (
             <div className={cx('details__tags')}>
                 <span className={cx('details__label')}>{label}:</span>
                 {(Array.isArray(items) &&
-                    items.map((value: string | number, index: number, itemsArr: string[] | number[]) => {
-                        return (
-                            <span key={index}>
-                                <Link className={cx('details__tag-item')} to="#!">
-                                    {(index + 1 !== itemsArr.length && value + ', ') || value}
-                                </Link>
-                            </span>
-                        );
-                    })) || (
+                    items.map(
+                        (
+                            value:
+                                | string
+                                | number
+                                | { name?: string; [key: string]: string | number | undefined },
+                            index: number,
+                            itemsArr: string[] | number[],
+                        ) => {
+                            return (
+                                <span key={index}>
+                                    <Link className={cx('details__tag-item')} to="#!">
+                                        {index + 1 !== itemsArr.length
+                                            ? typeof value === 'string'
+                                                ? value + ', '
+                                                : typeof value === 'object' && value.name + ', '
+                                            : typeof value === 'string'
+                                            ? value
+                                            : typeof value === 'object' && value.name}
+                                    </Link>
+                                </span>
+                            );
+                        },
+                    )) || (
                     <span>
                         <Link className={cx('details__tag-item')} to="#!">
-                            {items}
+                            {items.toString()}
                         </Link>
                     </span>
                 )}
@@ -62,7 +85,7 @@ const WatchDetail: FC<WatchDetailProps> = ({
                 <div className={cx('details__left')}>
                     <h2 className={cx('details__title')}>{title || data?.title}</h2>
                     <div className={cx('details__view')}>{views || data?.views}</div>
-                    <div className={cx('details__desc')}>{desc || data?.desc}</div>
+                    <div className={cx('details__desc')}>{desc || data?.synopsis}</div>
                 </div>
                 <div className={cx('details__right')}>
                     {/* Alternative Title */}
@@ -72,7 +95,7 @@ const WatchDetail: FC<WatchDetailProps> = ({
 
                     {/* Genres */}
                     {(genres && renderDetailTags('Genres:', genres)) ||
-                        (data?.genres && renderDetailTags('Alternative Titles:', data.genres))}
+                        (data?.genres && renderDetailTags('Genres:', data.genres))}
 
                     {/* Tags */}
                     {(tags && renderDetailTags('Tags:', tags)) ||

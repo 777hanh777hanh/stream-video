@@ -14,21 +14,25 @@ const WatchListCardItem: FC<WatchListCardItemProps> = ({ className: cusClassName
     const cx = useMemo(() => useClassNames(style), []);
     const classes = useMemo(() => cx('wrapper', cusClassName || ''), []);
 
+    const handleStreamVideo = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('stream video: ' + video.slug.replace(/\//g, ''));
+    };
+    const handleDispatchLikeVideo = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('dispatch like video: ' + video.id);
+    };
+
     return (
-        <div className={classes}>
-            <div
-                className={cx('card-item')}
-                onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('click-card');
-                }}
-            >
+        <div className={classes} onClick={handleStreamVideo}>
+            <div className={cx('card-item')}>
                 <div className={cx('card-item__thumbnail')}>
                     <Image
                         className={cx('card-item__img-bg')}
                         alt={video.title ?? ''}
-                        src={`${video.thumbnail}`}
+                        src={`${video.poster || video.thumbnail}`}
                     />
                     <Image
                         className={cx('card-item__img')}
@@ -52,11 +56,7 @@ const WatchListCardItem: FC<WatchListCardItemProps> = ({ className: cusClassName
                         </div>
                         <div
                             className={cx('card-item__metaData-Follow', { liked: video?.isLiked })}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                !video?.isLiked && console.log('like');
-                            }}
+                            onClick={handleDispatchLikeVideo}
                         >
                             {video?.isLiked ? <CheckedIcon /> : <PlusIcon />}
                         </div>

@@ -5,6 +5,7 @@
     color: var(--text-color);
     border-bottom: 0.1rem solid var(--dark-separate-color);
     cursor: pointer;
+    border-radius: 0.2rem;
 
     &:hover {
         .list__item-icon {
@@ -32,6 +33,18 @@
         border-radius: 0.4rem;
         overflow: hidden;
         flex: 0 0 18%;
+    }
+
+    &-img {
+        filter: blur(0.1rem);
+    }
+
+    &-img-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        object-fit: contain;
     }
 
     &-play-icon {
@@ -69,6 +82,7 @@
     &-info {
         flex: 0 0 70%;
         font-size: 1.6rem;
+        line-height: 1.5;
     }
 
     &-title {

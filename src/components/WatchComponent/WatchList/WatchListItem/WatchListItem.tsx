@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useLayoutEffect, useMemo, useState } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './WatchListItem.module.scss';
@@ -7,44 +7,52 @@ import { EyeIcon, PlayIcon2 } from '~/assets/icons';
 
 interface WatchListItemProps {
     className?: string | { [key: string]: string | boolean | undefined };
-    // data?: { [key: string]: string | string[] | number | null | undefined } | undefined;
-    // index?: number | string;
-    // imgSrc?: string | null | undefined;
-    // title: string;
-    // views?: string | number | undefined;
-    // desc?: string;
+    data?: { [key: string]: string | string[] | number | null | undefined } | undefined;
+    index?: number;
 }
 
-const WatchListItem: FC<WatchListItemProps> = ({ className: cusClassName }) => {
+const WatchListItem: FC<WatchListItemProps> = ({ className: cusClassName, data, index }) => {
     const cx = useMemo(() => useClassNames(style), []);
+    const [isTarget, setIsTarget] = useState(false);
+
+    const handleStreamVideo = () => {
+        alert('Stream video: ' + data?.slug);
+    };
+
+    useLayoutEffect(() => {
+        const checkIsCurrentVideo = () => {
+            const l = window.location.pathname;
+            const s: string = (data?.slug && data?.slug.toString().replace(/\//g, ''))?.toString() || '';
+            const pathnameArr = (l.endsWith('/') && l.slice(0, -1).split('/')) || l.split('/');
+            const pathnameSplit = pathnameArr[pathnameArr.length - 1];
+            if (s === pathnameSplit) setIsTarget(true);
+        };
+
+        checkIsCurrentVideo();
+    });
 
     return (
-        <div className={cx('list__item', cusClassName || '')} tabIndex={0}>
-            <div className={cx('list__item-index')}>1</div>
+        <div
+            className={cx('list__item', cusClassName || '', { active: isTarget })}
+            tabIndex={0}
+            onClick={handleStreamVideo}
+        >
+            <div className={cx('list__item-index')}>{`${typeof index === 'number' && index + 1}`}</div>
             <div className={cx('list__item-poster')}>
-                <Image
-                    className={cx('list__item-img')}
-                    src="https://i.ytimg.com/vi/1La4QzGeaaQ/maxresdefault.jpg"
-                    alt="Episode 1"
-                />
+                <Image className={cx('list__item-img')} src={data?.poster} alt={data?.title} />
+                <Image className={cx('list__item-img-bg')} src={data?.thumbnail} alt={data?.title} />
                 <div className={cx('list__item-play-icon')}>
                     <PlayIcon2 className={cx('list__item-icon')} />
                 </div>
             </div>
             <div className={cx('list__item-info')}>
                 <div className={cx('list__item-title')}>
-                    <div className={cx('list__item-title-text')}>Episode 1</div>
+                    <div className={cx('list__item-title-text')}>{data?.title}</div>
                     <div className={cx('list__item-views')}>
-                        1000 <EyeIcon />
+                        {data?.views} <EyeIcon />
                     </div>
                 </div>
-                <div className={cx('list__item-desc', 'line-clamp', 'line-clamp-4')}>
-                    Excepteur non dolor consectetur pariatur aliqua sunt Lorem quis laborum voluptate Lorem ea
-                    voluptate. Tempor velit elit exercitation qui duis aute. Do fugiat incididunt culpa irure.
-                    Dolor ad tempor laborum ea. Excepteur non dolor consectetur pariatur aliqua sunt Lorem
-                    quis laborum voluptate Lorem ea voluptate. Tempor velit elit exercitation qui duis aute.
-                    Do fugiat incididunt culpa irure. Dolor ad tempor laborum ea.
-                </div>
+                <div className={cx('list__item-desc', 'line-clamp', 'line-clamp-4')}>{data?.synopsis}</div>
             </div>
         </div>
     );

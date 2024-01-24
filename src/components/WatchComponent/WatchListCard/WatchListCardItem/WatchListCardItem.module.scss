@@ -87,13 +87,18 @@
         font-size: 1.6rem;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
+    }
+
+    &__metaData-text {
+        max-width: 70%;
     }
 
     &__metaData-Follow {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 0.5rem;
         width: 4rem;
         aspect-ratio: 1/1;
         font-size: 2rem;
@@ -123,8 +128,13 @@
     }
 
     &__title {
-        font-size: 2rem;
+        font-size: 1.6rem;
         color: var(--text-color);
+
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical;
     }
 
     &__views {
