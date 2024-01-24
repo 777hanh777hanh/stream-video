@@ -28,7 +28,7 @@ const Search = ({ className: cusClassName }, ref: any) => {
         const fetchSearchResult = async () => {
             setIsLoading(true);
             try {
-                const response = await searchService.search(debounceSearchValue);
+                const response = await searchService.search({ s: debounceSearchValue });
 
                 setSearchResult(response.videos);
                 setIsLoading(false);
