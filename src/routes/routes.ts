@@ -2,6 +2,7 @@ import React from 'react';
 import WatchComponent from '~components/WatchComponent';
 import { DefaultLayout, LandingLayout, NoneLayout } from '~/layouts';
 import { HomePage, SignInPage } from '~/pages';
+import StreamPage from '~/pages/StreamPage';
 
 const routes = {
     home: '/',
@@ -12,7 +13,7 @@ const routes = {
     saved: '/saved',
     setting: '/setting',
     list: '/list',
-    stream: '/stream',
+    stream: '/stream/:slug',
 };
 
 type RoutesProps = {
@@ -35,6 +36,11 @@ const publicRoutes: RoutesProps[] = [
         path: `${routes.home}/index.html`,
         component: HomePage,
         layout: DefaultLayout,
+    },
+    {
+        path: routes.stream,
+        component: StreamPage,
+        layout: NoneLayout,
     },
     {
         path: routes.signin,
