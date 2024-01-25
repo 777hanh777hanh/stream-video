@@ -1,10 +1,9 @@
 import { memo, useMemo, useEffect, useState, useRef } from 'react';
-// import { Link, useNavigate, useOutletContext } from 'react-router-dom';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
 import style from './WatchComponent.module.scss';
-// import { routes } from '~/routes';
+import { handlePathname } from '~/utils';
 import Image from '~components/Image';
 import { CloseIcon, PlayIcon, PlusIcon } from '~/assets/icons';
 import Button from '../Button';
@@ -26,7 +25,7 @@ const WatchComponent = () => {
     const { wrapperRef, currentScroll } = useOutletContext<any>();
     const currentScrollValue = useMemo(() => currentScroll, []);
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     // fetch API
     useEffect(() => {
@@ -138,7 +137,9 @@ const WatchComponent = () => {
     const handleStreamVideo = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
-        alert('stream video: ' + videoData?.video?.slug.replace(/\//g, ''));
+
+        const pathStream = handlePathname.streamPath(videoData?.video?.slug);
+        navigate(pathStream);
     };
 
     return (
