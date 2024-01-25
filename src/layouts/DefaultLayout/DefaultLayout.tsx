@@ -45,13 +45,11 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')} ref={containerRef}>
-                <div>
-                    <HeaderComponent className={cx('header')} />
-                    <main className={cx('main')} ref={mainRef}>
-                        {children}
-                    </main>
-                    <FooterComponent className={cx('footer')} />
-                </div>
+                <HeaderComponent className={cx('header')} />
+                <main className={cx('main')} ref={mainRef}>
+                    {children}
+                </main>
+                <FooterComponent className={cx('footer')} />
             </div>
             <Outlet context={{ wrapperRef: containerRef, currentScroll: scrollTopValue }} />
         </div>
