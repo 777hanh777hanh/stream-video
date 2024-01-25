@@ -39,10 +39,16 @@ const WatchListItem: FC<WatchListItemProps> = ({ className: cusClassName, data, 
         >
             <div className={cx('list__item-index')}>{`${typeof index === 'number' && index + 1}`}</div>
             <div className={cx('list__item-poster')}>
-                <Image className={cx('list__item-img')} src={data?.poster} alt={data?.title} />
-                <Image className={cx('list__item-img-bg')} src={data?.thumbnail} alt={data?.title} />
-                <div className={cx('list__item-play-icon')}>
-                    <PlayIcon2 className={cx('list__item-icon')} />
+                <div className={cx('list__item-poster-wrapper')}>
+                    <Image
+                        className={cx('list__item-img-bg')}
+                        src={data?.poster || data?.thumbnail}
+                        alt={data?.title}
+                    />
+                    <Image className={cx('list__item-img')} src={data?.thumbnail} alt={data?.title} />
+                    <div className={cx('list__item-play-icon')}>
+                        <PlayIcon2 className={cx('list__item-icon')} />
+                    </div>
                 </div>
             </div>
             <div className={cx('list__item-info')}>
