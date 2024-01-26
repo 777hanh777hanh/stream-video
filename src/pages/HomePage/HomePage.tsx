@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './HomePage.module.scss';
@@ -10,6 +10,8 @@ const HomePage = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isFetchSuccess, setIsFetchSuccess] = useState(false);
+
+    const countReconnect = useRef(0);
 
     useEffect(() => {
         let timerId: any = undefined;
@@ -26,20 +28,9 @@ const HomePage = () => {
                 setIsFetchSuccess(false);
 
                 // after 3 seconds, fetch again
-                timerId = reconnect(3000);
+                timerId = reconnect(5000, fetchHomeData);
             }
         };
-
-        function reconnect(duration: number = 1000) {
-            // reconnect after duration
-            let timerId: any = undefined;
-            timerId = setTimeout(() => {
-                clearTimeout(timerId);
-                fetchHomeData();
-            }, duration);
-
-            return timerId;
-        }
 
         fetchHomeData();
 
@@ -49,10 +40,31 @@ const HomePage = () => {
         };
     }, []);
 
+    function reconnect(duration: number = 1000, callback?: Function) {
+        // reconnect after duration
+        if (countReconnect.current < 3) {
+            const timerId = setTimeout(() => {
+                if (callback) callback();
+            }, duration);
+
+            countReconnect.current += 1;
+
+            return timerId;
+        } else {
+            window.location.reload();
+        }
+    }
+
     return (
         <>
             <section className={cx('wrapper')}>
                 <div className={cx('container')}>
+                    {isLoading && (
+                        <div className={cx('loading')}>
+                            <span>Loading...</span>
+                        </div>
+                    )}
+
                     {!isLoading && isFetchSuccess && (
                         <>
                             {data &&
