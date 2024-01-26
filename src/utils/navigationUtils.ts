@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '~/routes';
 
@@ -12,7 +13,7 @@ const goBackPublic = () => {
         }
     };
 
-    return handleGoBack;
+    return useCallback(handleGoBack, [navigate]);
 };
 
 // const handlePrivateGoBack = () => {}
