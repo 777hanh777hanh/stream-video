@@ -2,9 +2,12 @@ import { useMemo, FC } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './StreamPage.module.scss';
+import { goBackPublic } from '~/utils/navigationUtils';
 
 const StreamPage: FC = () => {
     const cx = useMemo(() => useClassNames(style), []);
+
+    const handleGoBack = goBackPublic();
 
     return (
         <div className={cx('wrapper')}>
@@ -24,7 +27,12 @@ const StreamPage: FC = () => {
                                 <div className={cx('overlay__controller-top')}>
                                     <div className={cx('overlay__controller-top__left')}>
                                         {/* go back */}
-                                        <div className={cx('overlay__go-back')}>{/* button go back */}</div>
+                                        <div className={cx('overlay__go-back')}>
+                                            {/* button go back */}
+                                            <button type="button" onClick={handleGoBack}>
+                                                Go Back
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className={cx('overlay__controller-top__right')}>RIGHT</div>
                                 </div>
