@@ -2,12 +2,36 @@ import { useMemo, FC } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './StreamPage.module.scss';
-import { goBackPublic } from '~/utils/navigationUtils';
+import { navigationUtils } from '~/utils';
 
-const StreamPage: FC = () => {
+// video
+import videoSrc from '~/assets/videos/video-temp.mp4';
+
+interface StreamPageProps {
+    className?: string;
+    data?: any;
+}
+
+const StreamPage: FC<StreamPageProps> = () => {
     const cx = useMemo(() => useClassNames(style), []);
+    // const iframeRef = useRef<any>();
 
-    const handleGoBack = goBackPublic();
+    const goBack = navigationUtils.goBackPublic();
+
+    const handleGoBack = (e: { preventDefault: () => void; stopPropagation: () => void }) => {
+        e.preventDefault();
+        e.stopPropagation();
+        goBack(getSlugOfVideo());
+    };
+
+    const getSlugOfVideo = () => {
+        const l = window.location;
+        let p = l.pathname;
+        if (p.endsWith('/')) {
+            p = p.substring(0, p.length - 1);
+        }
+        return p.split('/').pop();
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -15,8 +39,16 @@ const StreamPage: FC = () => {
                 <div className={cx('stream__container')}>
                     <div id="player" className={cx('stream__player')} tabIndex={0}>
                         {/* Video */}
-                        <div className="video__container">
-                            <video src="#!" tabIndex={-1}></video>
+                        <div className={cx('video__wrapper')}>
+                            <div className={cx('video__container')}>
+                                {/* <iframe
+                                    ref={iframeRef}
+                                    className={cx('video__player')}
+                                    src="https://play.sonar-cdn.com/play/28f06c53-6191-498b-a12f-1d131382e530"
+                                    frameBorder={0}
+                                ></iframe> */}
+                                <video className={cx('video__player')} src={videoSrc} controls></video>
+                            </div>
                         </div>
 
                         {/* Overlay */}
