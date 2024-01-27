@@ -13,4 +13,4 @@ function removeFirstSlash(slug: string) {
     return slug;
 }
 
-export { streamPath };
+export { streamPath, removeFirstSlash };

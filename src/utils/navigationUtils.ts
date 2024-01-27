@@ -5,11 +5,15 @@ import { routes } from '~/routes';
 const goBackPublic = () => {
     const navigate = useNavigate();
 
-    const handleGoBack = () => {
+    const handleGoBack = (slug?: string) => {
         if (window.history.state.idx > 0) {
             navigate(-1);
         } else {
-            navigate(routes.home);
+            if (slug) {
+                navigate(routes.watch.replace(':slug', slug));
+            } else {
+                navigate(routes.home);
+            }
         }
     };
 
