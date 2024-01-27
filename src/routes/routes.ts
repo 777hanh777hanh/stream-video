@@ -18,7 +18,7 @@ const routes = {
 
 type RoutesProps = {
     path: string;
-    component?: React.FC<{ children: React.ReactNode }> | null | undefined;
+    component?: React.FC<{ children: React.ReactNode }> | React.FC<any> | null | undefined;
     layout?: React.FC<{ children: React.ReactNode }> | null | undefined;
     children?: RoutesProps[] | null | undefined;
     exact?: boolean;
