@@ -1,4 +1,4 @@
-import { memo, useMemo, useEffect, useState, useRef } from 'react';
+import { memo, useMemo, useEffect, useState, useRef, useCallback } from 'react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
@@ -142,6 +142,30 @@ const WatchComponent = () => {
         navigate(pathStream);
     };
 
+    const renderNotesVideo = useCallback((p: string | number | string[] | null | undefined) => {
+        if (typeof p === 'string') {
+            return (
+                <div className={cx('notes')}>
+                    {p.split('\n').map((item: string | undefined, index: number) => (
+                        <p className={cx('notes__text')} key={index}>
+                            {index === 0 && <span className={cx('notes__text--span')}>Note: </span>}
+                            {item}
+                        </p>
+                    ))}
+                </div>
+            );
+        } else {
+            return (
+                <div className={cx('notes')}>
+                    <p className={cx('notes__text')}>
+                        <span className={cx('notes__text--span')}>Note: </span>
+                        {p}
+                    </p>
+                </div>
+            );
+        }
+    }, []);
+
     return (
         <>
             <div className={cx('watch')} tabIndex={1}>
@@ -178,15 +202,6 @@ const WatchComponent = () => {
                                         <PlusIcon />
                                     </span>
                                 </Button>
-                                {/* <Button
-                                    btn
-                                    circle
-                                    className={cx('thumb__cta-item', 'thumb__cta-item--circle')}
-                                >
-                                    <span className={cx('thumb__cta-icon')}>
-                                        <HeartIcon className={cx('thumb__cta-icon')} />
-                                    </span>
-                                </Button> */}
                             </div>
                         </div>
                     </div>
@@ -213,14 +228,7 @@ const WatchComponent = () => {
                         })}
 
                         {/* notes */}
-                        {videoData?.video?.notes && (
-                            <div className={cx('notes')}>
-                                <p className={cx('notes__text')}>
-                                    <span className={cx('notes__text--span')}>Note: </span>
-                                    {videoData.video.notes}
-                                </p>
-                            </div>
-                        )}
+                        {videoData?.video?.notes && renderNotesVideo(videoData?.video?.notes)}
                     </div>
                 </div>
 

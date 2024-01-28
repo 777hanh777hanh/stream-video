@@ -134,6 +134,10 @@
             line-height: 1.5;
             margin-top: 4.8rem;
 
+            &__text:not(:first-of-type) {
+                margin-top: 0.5rem;
+            }
+
             &__text--span {
                 font-size: 2rem;
                 margin-right: 0.5vw;

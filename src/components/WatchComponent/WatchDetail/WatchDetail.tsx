@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useClassNames } from '~/hooks';
@@ -79,13 +79,25 @@ const WatchDetail: FC<WatchDetailProps> = ({
         );
     };
 
+    const renderSynopsis = useCallback((p: string | number | string[] | null | undefined) => {
+        if (typeof p === 'string') {
+            return p.split('\n').map((item: string | undefined, index: number) => (
+                <p className={cx('details__desc')} key={index}>
+                    {item}
+                </p>
+            ));
+        } else {
+            return <div className={cx('details__desc')}>{`${p}`}</div>;
+        }
+    }, []);
+
     return (
         <div className={classes}>
             <div className={cx('details')}>
                 <div className={cx('details__left')}>
                     <h2 className={cx('details__title')}>{title || data?.title}</h2>
                     <div className={cx('details__view')}>{views || data?.views}</div>
-                    <div className={cx('details__desc')}>{desc || data?.synopsis}</div>
+                    {renderSynopsis(desc || data?.synopsis)}
                 </div>
                 <div className={cx('details__right')}>
                     {/* Alternative Title */}
