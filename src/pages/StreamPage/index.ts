@@ -1,1 +1,1 @@
-export { default, default as StreamPage } from './StreamPage';
+export { default, default as StreamPage } from './StreamPageTemp';
