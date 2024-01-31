@@ -1,4 +1,4 @@
-import { useMemo, FC } from 'react';
+import { useMemo, FC, useState, useEffect } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './StreamPageTemp.module.scss';
@@ -6,7 +6,8 @@ import { navigationUtils } from '~/utils';
 
 // video
 import Button from '~/components/Button';
-import { PlusIcon } from '~/assets/icons';
+import { AlignToRightIcon, BackIcon, HeartIcon, MenuIcon } from '~/assets/icons';
+import * as infoVideoService from '~/services/infoVideoService';
 
 interface StreamPageTempProps {
     className?: string;
@@ -15,7 +16,10 @@ interface StreamPageTempProps {
 
 const StreamPageTemp: FC<StreamPageTempProps> = () => {
     const cx = useMemo(() => useClassNames(style), []);
-    // const iframeRef = useRef<any>();
+
+    const [isCollapse, setIsCollapse] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
+    const [videoData, setVideoData] = useState<any>({});
 
     const goBack = navigationUtils.goBackPublic();
 
@@ -25,6 +29,25 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
         goBack(getSlugOfVideo());
     };
 
+    useEffect(() => {
+        const infoVideo = async () => {
+            const videoSlug = getSlugOfVideo();
+
+            // setIsLoading(true);
+            if (videoSlug) {
+                try {
+                    const response = await infoVideoService.infoVideo(videoSlug);
+                    setVideoData(response.video);
+                    // setIsLoading(false);
+                } catch (error) {
+                    // setIsLoading(false);
+                }
+            }
+        };
+
+        infoVideo();
+    }, []);
+
     const getSlugOfVideo = () => {
         const l = window.location;
         let p = l.pathname;
@@ -33,6 +56,31 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
         }
         return p.split('/').pop();
     };
+
+    const handleCollapse = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsCollapse(!isCollapse);
+    };
+
+    const handleSaveVideo = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsLiked(!isLiked);
+    };
+
+    const handleGetLinkVideo = useMemo(() => {
+        console.log(videoData.links);
+
+        if (videoData?.links) {
+            if (Array.isArray(videoData.links)) {
+                return videoData.links[0];
+            } else if (typeof videoData.links === 'string') {
+                return videoData.links;
+            }
+        }
+        return '';
+    }, [videoData]);
 
     return (
         <div className={cx('wrapper')}>
@@ -46,14 +94,9 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
                                     <div className={cx('video__container')}>
                                         <iframe
                                             className={cx('video__player', 'video__player--iframe')}
-                                            src="https://play.sonar-cdn.com/play/28f06c53-6191-498b-a12f-1d131382e530"
+                                            src={handleGetLinkVideo}
                                             frameBorder={0}
                                         ></iframe>
-                                        {/* <video
-                                            className={cx('video__player')}
-                                            src={videoSrc}
-                                            controls
-                                        ></video> */}
                                     </div>
                                 </div>
                             </div>
@@ -68,17 +111,48 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
                         </div>
                     </div>
 
-                    {/* Stream CTA */}
-                    <div className={cx('stream__cta')}>
-                        <Button btn circle type="button" className={cx('stream__btn')} onClick={handleGoBack}>
-                            <PlusIcon />
-                        </Button>
-                        <Button btn circle type="button" className={cx('stream__btn')}>
-                            <PlusIcon />
-                        </Button>
-                        <Button btn circle type="button" className={cx('stream__btn')}>
-                            <PlusIcon />
-                        </Button>
+                    <div className={cx('stream__bottom')}>
+                        {/* Stream title */}
+                        <h2 className={cx('stream__title')}>{videoData?.title || ''}</h2>
+
+                        {/* Stream CTA */}
+                        <div className={cx('stream__cta')}>
+                            <Button
+                                btn
+                                circle
+                                type="button"
+                                className={cx('stream__btn')}
+                                onClick={handleGoBack}
+                            >
+                                {/* Back Icon */}
+                                <BackIcon className={cx('stream__icon')} />
+                            </Button>
+                            <Button
+                                btn
+                                circle
+                                type="button"
+                                className={cx('stream__btn', { liked: isLiked })}
+                                onClick={handleSaveVideo}
+                            >
+                                {/* Plus Icon */}
+                                {/* if saved => color change */}
+                                <HeartIcon className={cx('stream__icon')} />
+                            </Button>
+                            <Button
+                                btn
+                                circle
+                                type="button"
+                                className={cx('stream__btn')}
+                                onClick={handleCollapse}
+                            >
+                                {/* if !isCollapse => Collapse Icon */}
+                                {!isCollapse && <MenuIcon className={cx('stream__icon')} />}
+                                {/* if isCollapse =>  Expend Icon */}
+                                {isCollapse && <AlignToRightIcon className={cx('stream__icon')} />}
+                            </Button>
+                        </div>
+
+                        <div></div>
                     </div>
                 </div>
             </div>
