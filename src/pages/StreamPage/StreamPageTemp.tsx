@@ -8,6 +8,7 @@ import { navigationUtils } from '~/utils';
 import Button from '~/components/Button';
 import { AlignToRightIcon, BackIcon, HeartIcon, MenuIcon } from '~/assets/icons';
 import * as infoVideoService from '~/services/infoVideoService';
+import StreamListVideo from './StreamListVideo';
 
 interface StreamPageTempProps {
     className?: string;
@@ -70,8 +71,6 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
     };
 
     const handleGetLinkVideo = useMemo(() => {
-        console.log(videoData.links);
-
         if (videoData?.links) {
             if (Array.isArray(videoData.links)) {
                 return videoData.links[0];
@@ -103,12 +102,7 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
                         </div>
 
                         {/* List video */}
-                        <div className={cx('stream__list')}>
-                            <div className={cx('stream__list-item')}>Video 1</div>
-                            <div className={cx('stream__list-item')}>Video 2</div>
-                            <div className={cx('stream__list-item')}>Video 3</div>
-                            <div className={cx('stream__list-item')}>Video 4</div>
-                        </div>
+                        <StreamListVideo videoTagsSlug={videoData?.tags} videoSlug={videoData?.slug} />
                     </div>
 
                     <div className={cx('stream__bottom')}>

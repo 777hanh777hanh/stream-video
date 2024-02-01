@@ -11,6 +11,7 @@
     &__view {
         flex: 1;
         display: flex;
+        overflow: hidden;
     }
 
     &__player {
@@ -19,6 +20,7 @@
 
     .video {
         width: 100%;
+        min-width: 60rem;
         height: 100%;
         background-color: var(--dark-color);
         border-radius: 0 0 0.8rem 0.8rem;
@@ -65,35 +67,6 @@
                 width: auto;
                 height: 100%;
             }
-        }
-    }
-
-    // list
-    &__list {
-        margin-left: 2rem;
-        padding: 2rem 1.2rem;
-        height: 100%;
-        min-width: 32rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        overflow: auto;
-        row-gap: 1rem;
-        background-color: var(--dark-color);
-        overflow-x: hidden;
-        overflow-y: auto;
-        border-radius: 0 0 0.8rem 0.8rem;
-
-        user-select: none;
-
-        &-item {
-            background-color: var(--dark-separate-color);
-            width: 100%;
-            padding: 1em;
-            font-size: 1.6rem;
-            cursor: pointer;
-            border-radius: 0.4rem;
         }
     }
 
