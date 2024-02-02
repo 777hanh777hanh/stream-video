@@ -87,6 +87,7 @@
         color: var(--text-color);
         font-size: 1.4rem;
         font-weight: 500;
+        justify-self: flex-start;
 
         line-clamp: 3;
         overflow: hidden !important;
@@ -126,5 +127,20 @@
         .stream__icon {
             font-size: 1.7rem;
         }
+    }
+
+    &__home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin-right: 2vw;
+        width: 5.2rem;
+        height: 5.2rem;
+        aspect-ratio: 1/1;
+        justify-self: flex-end;
+        cursor: default;
+        font-size: 2.8rem;
+        color: var(--text-color);
     }
 }

@@ -21,6 +21,9 @@
 
     user-select: none;
 
+    transition: 0.15s linear;
+    transition-property: width, flex, margin-left, padding-left, padding-right, padding;
+
     &-item {
         background-color: var(--dark-separate-color);
         display: flex;

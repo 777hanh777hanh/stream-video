@@ -1,4 +1,4 @@
-import { useMemo, FC, useState, useEffect } from 'react';
+import { useMemo, FC, useState, useEffect, useCallback, useRef } from 'react';
 
 import { useClassNames } from '~/hooks';
 import style from './StreamPageTemp.module.scss';
@@ -6,9 +6,12 @@ import { navigationUtils } from '~/utils';
 
 // video
 import Button from '~/components/Button';
-import { AlignToRightIcon, BackIcon, HeartIcon, MenuIcon } from '~/assets/icons';
+import { AlignToRightIcon, BackIcon, HeartIcon, HomeIcon, MenuIcon } from '~/assets/icons';
 import * as infoVideoService from '~/services/infoVideoService';
 import StreamListVideo from './StreamListVideo';
+import { handlePathname } from '~/utils';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '~/routes';
 
 interface StreamPageTempProps {
     className?: string;
@@ -18,9 +21,16 @@ interface StreamPageTempProps {
 const StreamPageTemp: FC<StreamPageTempProps> = () => {
     const cx = useMemo(() => useClassNames(style), []);
 
+    const navigate = useNavigate();
+
     const [isCollapse, setIsCollapse] = useState(false);
     const [isLiked, setIsLiked] = useState(false);
     const [videoData, setVideoData] = useState<any>({});
+    const [currentSlugVideo, setCurrentSlugVideo] = useState('');
+    const [iframeSrc, setIframeSrc] = useState(null);
+
+    const iframeRef = useRef(null);
+    const listVideoRef = useRef(null);
 
     const goBack = navigationUtils.goBackPublic();
 
@@ -30,14 +40,17 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
         goBack(getSlugOfVideo());
     };
 
+    const handleGoHome = () => {
+        navigate(routes.home);
+    };
+
+    // Fetch Video Data
     useEffect(() => {
         const infoVideo = async () => {
-            const videoSlug = getSlugOfVideo();
-
             // setIsLoading(true);
-            if (videoSlug) {
+            if (currentSlugVideo) {
                 try {
-                    const response = await infoVideoService.infoVideo(videoSlug);
+                    const response = await infoVideoService.infoVideo(currentSlugVideo);
                     setVideoData(response.video);
                     // setIsLoading(false);
                 } catch (error) {
@@ -47,8 +60,21 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
         };
 
         infoVideo();
+    }, [currentSlugVideo]);
+
+    useEffect(() => {
+        setIframeSrc(handleGetLinkVideo);
+    }, [videoData]);
+
+    // Get current slug video
+    useEffect(() => {
+        const videoSlug = getSlugOfVideo();
+        if (videoSlug) {
+            setCurrentSlugVideo(videoSlug);
+        }
     }, []);
 
+    // Function handle Format Slug of video
     const getSlugOfVideo = () => {
         const l = window.location;
         let p = l.pathname;
@@ -58,10 +84,27 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
         return p.split('/').pop();
     };
 
+    const handleRedirectToVideo = useCallback((videoSlug: string, currentSlug: string) => {
+        setIframeSrc(null);
+        if (videoSlug !== currentSlug) {
+            const pathStream = handlePathname.streamPath(videoSlug);
+            navigate(pathStream, { replace: true });
+
+            setCurrentSlugVideo(videoSlug);
+        }
+    }, []);
+
     const handleCollapse = (e: any) => {
         e.preventDefault();
         e.stopPropagation();
         setIsCollapse(!isCollapse);
+
+        if (listVideoRef.current) {
+            (listVideoRef.current as HTMLElement).style.width = isCollapse ? '' : '0';
+            (listVideoRef.current as HTMLElement).style.paddingLeft = isCollapse ? '' : '0';
+            (listVideoRef.current as HTMLElement).style.paddingRight = isCollapse ? '' : '0';
+            (listVideoRef.current as HTMLElement).style.marginLeft = isCollapse ? '' : '0';
+        }
     };
 
     const handleSaveVideo = (e: any) => {
@@ -91,18 +134,26 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
                             <div className={cx('video')}>
                                 <div className={cx('video__wrapper')}>
                                     <div className={cx('video__container')}>
-                                        <iframe
-                                            className={cx('video__player', 'video__player--iframe')}
-                                            src={handleGetLinkVideo}
-                                            frameBorder={0}
-                                        ></iframe>
+                                        {iframeSrc && (
+                                            <iframe
+                                                className={cx('video__player', 'video__player--iframe')}
+                                                src={iframeSrc}
+                                                frameBorder={0}
+                                                ref={iframeRef}
+                                            ></iframe>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* List video */}
-                        <StreamListVideo videoTagsSlug={videoData?.tags} videoSlug={videoData?.slug} />
+                        <StreamListVideo
+                            videoTagsSlug={videoData?.tags}
+                            videoSlug={currentSlugVideo}
+                            onRedirectVideo={handleRedirectToVideo}
+                            ref={listVideoRef}
+                        />
                     </div>
 
                     <div className={cx('stream__bottom')}>
@@ -146,7 +197,9 @@ const StreamPageTemp: FC<StreamPageTempProps> = () => {
                             </Button>
                         </div>
 
-                        <div></div>
+                        <div className={cx('stream__home')} onClick={handleGoHome}>
+                            <HomeIcon />
+                        </div>
                     </div>
                 </div>
             </div>
