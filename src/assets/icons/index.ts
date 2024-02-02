@@ -17,3 +17,4 @@ export { default as ChevronDownIcon } from './chevronDown';
 export { default as CheckedIcon } from './checked';
 export { default as BackIcon } from './back';
 export { default as AlignToRightIcon } from './align2right';
+export { default as HomeIcon } from './home';
